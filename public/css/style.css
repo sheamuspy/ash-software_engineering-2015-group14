@@ -1,0 +1,144 @@
+body{
+    background-color:#4b4b4b;
+}
+table{
+    background-color: white;
+}
+.clickspot{
+	text-decoration:underline;
+	color:#5E5ECC;
+	cursor:pointer
+}
+.status{
+    text-align:center;
+	background-color:909090;
+    margin-top:10px;
+}
+.error{
+	color:Red;
+	background-color:Yellow
+}
+
+.menuitem {
+	/*text-decoration:underline;*/
+	color:white;/*#5E5ECC;*/
+	cursor:hand;
+    padding:10px;
+    text-align:center;
+}
+.menuitem:hover{
+	/*text-decoration:underline;*/
+	cursor:hand;
+	/*font-weight:bold;*/
+    color: #E8BF5C
+	/*background-color:Silver*/
+}
+
+#mainnav .menuitem{
+    background-color: #6E0000;
+    margin-top: 2px;
+    margin-right: 0px;
+    margin-left: 0px;
+
+}
+#divPageMenu{
+    background-color: #6E0000;
+    padding: 10px
+
+}
+
+#pageheader
+{
+    height: 1in;
+    background-color: #000080;
+	color:white;
+    font-size: large;
+    text-align: center;
+}
+
+#mainnav{
+	width:2in;
+	
+    /*background-color:white;*/
+    padding-top: 68px
+    
+}
+
+
+#content {
+	width:10in;
+	vertical-align:top;
+    padding-left: 10px;
+
+	
+}
+
+.reportTable 
+{
+    border:1px;
+    border-collapse:collapse;
+}
+
+.reportTable .header
+{
+    background-color: 000000;
+    text-transform: uppercase;
+    color: White;
+}
+
+.reportTable .row1
+{
+    background-color: #FFE0B3;
+}
+
+.reportTable .row2
+{
+    background-color:White;
+}
+
+.reportTable tr:hover
+{
+    background-color:#FFA375;
+    cursor: hand;
+}
+
+.tableForm .label
+{
+    background-color: #CC6600;
+    text-transform:capitalize;
+    color: White;
+    text-align:right;
+}
+
+.tableForm .field
+{
+    background-color: #FFAE35;
+}
+.popupMenu
+{
+    background-color: #DC7518;
+    position: absolute;
+    display:none;
+    width: auto;
+}
+
+.popupMenu div
+{
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+.popupMenu div:hover
+{
+    color: #FFFFFF;
+    text-decoration: underline;
+    background-color: #CC6600;
+}
+
+.popupForm
+{
+    background-color: #DC7518;
+    position: absolute;
+    display:none;
+    width: auto;
+}
