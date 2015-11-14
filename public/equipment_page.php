@@ -5,77 +5,93 @@
 	}
 
 ?>
+    <!DOCTYPE html>
+    <html>
 
-<html>
-	<head>
-		<title>Equipment</title>
-		<link rel="stylesheet" href="css/style.css">
+    <head>
+        <title>Equipment</title>
         <link rel="stylesheet" href="css/materialize.min.css">
-		
-        <script>var userId = <?php echo $_SESSION['USER_ID']; ?>;</script>
-	</head>
-	<body>
-        <header></header>
-        <main>
-            <div class="row">
-                
-                <div class="col s12 m4 13">
-                    
-                </div>
-                
-                <div class="col s12 m8 19">
-                    
-                </div>
+        <link rel="stylesheet" href="css/style.css">
+
+        <script>
+            var userId = <?php echo $_SESSION['USER_ID']; ?>;
+        </script>
+
+    </head>
+
+    <body>
+        <!-- This is the page header -->
+        <header>
+
+            <div id="pageheader">
+                <b>Ashesi Engineering Inventory</b>
             </div>
-        </main>
-        <footer></footer>
-        
-		<table align='center'>
-			<tr>
-				<td colspan="2" id="pageheader">
-					<b>Ashesi Engineering Inventory</b>
-				</td>
-			</tr>
-			<tr>
-				<td id="mainnav">
-					<div><?php echo $_SESSION['USERNAME']?><br> logged in</div>
-					<a href="index.php" style="text-decoration:none"><div class="menuitem">Home</div></a>
-                    <a href="equipment_page.php" style="text-decoration:none"><div class="menuitem"><b>Equipment</b></div></a>
-					<a href="labpage.php" style="text-decoration: none;"><div class="menuitem">Labs</div></a>
-					<a href="suppliers_page.php" style="text-decoration:none"><div class="menuitem">Supplier</div></a>
-					<a href="history.php" style="text-decoration: none;"><div class="menuitem">History</div></a>
-					<a href="logout.php" style="text-decoration: none;"><div class="menuitem">Logout</div></a>
-				</td>
-				<td id="content">
-					<div id="divPageMenu">
-					<div style="float:left">
-						<span id="change" class="menuitem"  onclick="loadAddEquipmentForm()">Add Equipment</span>
-						<span class="menuitem" id="edit" onclick="loadEditEquipmentForm()" hidden="true">Edit</span> 
-						<span class="menuitem" onclick="deleteEquip()"id="deleteE" hidden="true">Delete</span>
-						<span class="menuitem" id="exit" onclick="exitView()" hidden="true">Exit</span>
-					</div>
-                        <div align="right">
-						<input type="text" placeholder="Search" id="txtSearch"/>
-						<span id="search" class="menuitem" onclick="search()">search</span>
-						</div>
-					</div>
-					<div id="divStatus" class="status">
-						status message
-					</div>
-					<div id="divContent">
-						<div id="contentSpace"></div>
-						<table id="tableExample" class="reportTable" width="100%">
-                            <?php
+
+        </header>
+
+        <!-- This is the main section of the page -->
+        <main>
+
+            <div class="row">
+
+                <div class="col s12 m4 13">
+                    <div id="mainnav">
+                        <a href="#">
+                            <?php echo $_SESSION['USERNAME']?>
+                                <br> logged in</a>
+                        <a href="index.php" style="text-decoration:none">
+                            <div class="menuitem">Home</div>
+                        </a>
+                        <a href="equipment_page.php" style="text-decoration:none">
+                            <div class="menuitem"><b>Equipment</b></div>
+                        </a>
+                        <a href="labpage.php" style="text-decoration: none;">
+                            <div class="menuitem">Labs</div>
+                        </a>
+                        <a href="suppliers_page.php" style="text-decoration:none">
+                            <div class="menuitem">Supplier</div>
+                        </a>
+                        <a href="history.php" style="text-decoration: none;">
+                            <div class="menuitem">History</div>
+                        </a>
+                        <a href="logout.php" style="text-decoration: none;">
+                            <div class="menuitem">Logout</div>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="col s12 m8 19">
+                    <div id="content">
+                        <div id="divPageMenu">
+                            <div style="float:left">
+                                <span id="change" class="menuitem" onclick="loadAddEquipmentForm()">Add Equipment</span>
+                                <span class="menuitem" id="edit" onclick="loadEditEquipmentForm()" hidden="true">Edit</span>
+                                <span class="menuitem" onclick="deleteEquip()" id="deleteE" hidden="true">Delete</span>
+                                <span class="menuitem" id="exit" onclick="exitView()" hidden="true">Exit</span>
+                            </div>
+                            <div align="right">
+                                <input type="text" placeholder="Search" id="txtSearch" />
+                                <span id="search" class="menuitem" onclick="search()">search</span>
+                            </div>
+                        </div>
+                        <div id="divStatus" class="status">
+                            status message
+                        </div>
+                        <div id="divContent">
+                            <div id="contentSpace"></div>
+                            <table id="tableExample" class="reportTable bordered" width="100%">
+                                <?php
 
 include_once("../application/models/equipment.php");
 $obj= new equipment();
 $obj->display_equipment();
 //$lab= new equipment();
 	echo"<tr class='header'>
-		<td>Serial Number</td>
-		<td>Equipment Name</td>
-		<td>Lab</td>
-		<td>Date Purchased</td>
+		<td data-field='serial_number'>Serial Number</td>
+		<td data-field='name'>Equipment Name</td>
+		<td data-field='name'>Lab</td>
+		<td data-field='date'>Date Purchased</td>
 	    </tr>";
 
     $count=0;
@@ -95,11 +111,17 @@ $obj->display_equipment();
 	}
 				
 ?>
-					
-		</table>
+
+                            </table>
                         </div>
-                    <script src="jquery-2.1.3.js"></script>
+                    </div>
+                </div>
+        </main>
+        <footer></footer>
+
+        <script src="jquery-2.1.3.js"></script>
         <script src="js/equipment_page.js"></script>
-                    <script src="js/materialize.min.js"></script>
-	</body>
-</html>	
+        <script src="js/materialize.min.js"></script>
+    </body>
+
+    </html>

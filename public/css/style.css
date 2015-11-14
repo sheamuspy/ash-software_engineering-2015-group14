@@ -56,19 +56,11 @@ table{
     text-align: center;
 }
 
-#mainnav{
-	width:2in;
-	
-    /*background-color:white;*/
-    padding-top: 68px
-    
-}
+#mainnav{}
 
 
 #content {
-	width:10in;
 	vertical-align:top;
-    padding-left: 10px;
 
 	
 }
@@ -81,7 +73,7 @@ table{
 
 .reportTable .header
 {
-    background-color: 000000;
+    background-color: black;
     text-transform: uppercase;
     color: White;
 }

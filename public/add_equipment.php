@@ -36,7 +36,7 @@
 						?>
 				</td>
 			<tr>
-				<td>Date Purchased:</td><td> <input type="date" id="dp" size="30" required></td>
+				<td>Date Purchased:</td><td> <input type="date" class="datepicker" id="dp" size="30" required></td>
 			</tr>
 			<tr>
 				<td>Supplier ID:</td><td> <select id="sid">
