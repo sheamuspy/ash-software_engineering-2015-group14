@@ -30,7 +30,7 @@
 	
 	function add_equipment(){
 	if(isset($_REQUEST['en'])){
-			include_once("equipment.php");
+			include_once("../models/equipment.php");
 			$obj = new equipment();
 			if(!$obj->connect()){
 				echo '{"result":0,"message":"Sorry we could not connect to the database."}';
@@ -55,7 +55,7 @@
 	}
 	function edit_equipment(){
 		if(isset($_REQUEST['en'])){
-			include_once("equipment.php");
+			include_once("../models/equipment.php");
 			$obj = new equipment();
 			if(!$obj->connect()){
 				echo '{"result":0,"message":"Sorry we could not connect to the database."}';
@@ -83,7 +83,7 @@
 	}
 	
 	function delete_equipment(){
-		include_once("equipment.php");
+		include_once("../models/equipment.php");
 			$obj = new equipment();
 			if(!$obj->connect()){
 				echo '{"result":0,"message":"Sorry we could not connect to the database."}';
@@ -101,7 +101,7 @@
 		echo '{"result":0,"message": "search did not work."}';
 	}
 	$search_text=$_REQUEST['st'];
-	include_once("equipment.php");
+	include_once("../models/equipment.php");
 	$obj=new equipment();
 	if(!$obj->search_equipment($search_text)){
 		echo '{"result":0,"message": "search did not work."}';
@@ -122,7 +122,7 @@
 }
 
 	function get_last(){
-		include_once("equipment.php");
+		include_once("../models/equipment.php");
 		$obj=new equipment();
 		$obj->connect();
 		$response=$obj->get_most_recently_added();

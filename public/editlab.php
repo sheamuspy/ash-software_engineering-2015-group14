@@ -1,6 +1,6 @@
 <?php
 		if(isset($_REQUEST['ln'])){
-		include_once("labs.php");
+		include_once("../application/models/labs.php");
 		$obj1 = new labs();$id=$_REQUEST['id'];
 		$name=$_REQUEST['ln'];
 		$dept_head=$_REQUEST['dh'];
@@ -21,7 +21,7 @@
 	<body>
 		<?php
 		if(isset($_REQUEST['lab_id'])){
-			require_once("labs.php");
+			require_once("../application/models/labs.php");
 			$lab_id = $_REQUEST['lab_id'];
 			$obj = new labs();
 			$obj->get_lab($lab_id);

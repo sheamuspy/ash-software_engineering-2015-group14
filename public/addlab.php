@@ -1,6 +1,6 @@
 <?php
 		if(isset($_REQUEST['ln'])){
-			include("labs.php");
+			include("../application/labs.php");
 			$obj = new labs();
 			$name = $_REQUEST['ln'];
 			$department_head=$_REQUEST['dh'];

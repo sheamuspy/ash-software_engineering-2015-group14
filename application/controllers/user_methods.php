@@ -13,7 +13,7 @@
 	}
 	
 	function validate(){
-		include("users.php");
+		include("../models/users.php");
 		$username=$_REQUEST['username'];
 		$password=$_REQUEST['password'];
 		$obj= new users();

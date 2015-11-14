@@ -1,5 +1,4 @@
-<?php
-	
+<?php	
 	include("adb.php");
 
 	class transaction extends adb{

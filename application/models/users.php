@@ -1,5 +1,4 @@
-<?php
-	
+<?php	
 	include("adb.php");
 
 	class users extends adb{
@@ -33,8 +32,10 @@
 		
 		function user_password_validation($username, $password){
 		
-			$str_query = "SELECT * FROM webtech_project_users
-							WHERE user_name='$username' AND password=MD5('$password')";
+//			$str_query = "SELECT * FROM webtech_project_users
+//							WHERE user_name='$username' AND password=MD5('$password')";
+            $str_query = "SELECT * FROM webtech_project_users
+							WHERE user_name='$username' AND password='$password'";
 			
 			if($this->query($str_query)){
 				return $this->fetch();				

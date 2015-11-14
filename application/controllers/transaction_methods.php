@@ -1,6 +1,6 @@
 <?php
 	if(!isset($_REQUEST['cmd'])){
-		include("transaction.php");
+            include_once("../models/transaction.php");
 	
 		$obj = new transaction();
 		$obj->connect();
@@ -31,7 +31,7 @@
 	
 	switch($cmd){
 	case 1:
-		include("transaction.php");
+		include_once("../models/transaction.php");
 	
 		$obj = new transaction();
 		$obj->connect();
@@ -59,7 +59,7 @@
 		
 	case 2:
 		$id=$_REQUEST['id'];
-		include("transaction.php");
+		include_once("../models/transaction.php");
 		$obj= new transaction();
 		$obj->connect();
 		$obj->get_transaction($id);
@@ -78,7 +78,7 @@
 	
 		$search_by = $_REQUEST['sb'] ;
 		$search_txt = $_REQUEST['st'];
-		include("transaction.php");
+		include_once("../models/transaction.php");
 	
 		$obj = new transaction();
 		$obj->connect();
@@ -134,7 +134,7 @@
 		$uid=$_REQUEST['uid'];
 		$eid=$_REQUEST['eid'];
 		$pur=$_REQUEST['pur'];
-		include_once("transaction.php");
+		include_once("../models/transaction.php");
 		
 		$trans= new transaction();
 		$trans->connect();

@@ -1,5 +1,5 @@
 <?php
-    include_once("equipment.php");
+    include_once("../application/models/equipment.php");
     $obj= new equipment();
     $eid = $_REQUEST['id'];
     $obj->view_equipment($eid);

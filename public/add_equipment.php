@@ -20,7 +20,7 @@
 				<td>Lab ID:</td><td><select id="lid">
 							<option value="0">--Select Lab--</option>
 							<?php
-							include_once("labs.php");
+							include_once("../application/models/labs.php");
 							$sup=new labs();
 							
 							$sup->get_all_labs();
@@ -42,7 +42,7 @@
 				<td>Supplier ID:</td><td> <select id="sid">
 								<option value="0">--Select Supplier--</option>
 								<?php
-							include_once("suppliers.php");
+							include_once("../application/models/suppliers.php");
 							$sup=new suppliers();
 							
 							$sup->get_suppliers();

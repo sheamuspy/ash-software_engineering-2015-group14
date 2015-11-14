@@ -28,7 +28,7 @@
 			if(!isset($_POST['name'])){
 				exit();
 			}
-			include("users.php");
+			include("../application/models/users.php");
 			$name = $_POST['name'];
 			$status = $_POST['status'];
 			$contact = $_POST['contact'];

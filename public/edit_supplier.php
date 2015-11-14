@@ -1,6 +1,6 @@
 <?php
 		if(isset($_REQUEST['sn'])){
-		include_once("suppliers.php");
+		include_once("../application/models/suppliers.php");
 		$obj1 = new suppliers();
 		$id=$_REQUEST['id'];
 		$name=$_REQUEST['sn'];
@@ -22,7 +22,7 @@
 	<body>
 		<?php
 		if(isset($_REQUEST['supplier_id'])){
-			require_once("suppliers.php");
+			require_once("../application/models/suppliers.php");
 			$supplier_id = $_REQUEST['supplier_id'];
 			$obj = new suppliers();
 			$obj->get_supplier($supplier_id);

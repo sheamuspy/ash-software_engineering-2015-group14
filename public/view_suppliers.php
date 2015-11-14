@@ -1,6 +1,6 @@
 
 <?php
-	include("suppliers.php");
+	include("../application/models/suppliers.php");
 
 	$supplier_id=$_REQUEST['supplier_id'];
 

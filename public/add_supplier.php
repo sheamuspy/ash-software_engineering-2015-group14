@@ -1,6 +1,6 @@
 <?php
 		if(isset($_REQUEST['sn'])){
-			include("suppliers.php");
+			include("../application/models/suppliers.php");
 			$obj = new suppliers();
 			$name = $_REQUEST['sn'];
 			$address=$_REQUEST['sa'];

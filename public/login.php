@@ -2,7 +2,7 @@
 	if(isset($_REQUEST['loginUsername'])){
 		session_start();
 		
-		include_once("users.php");
+		include_once("../application/models/users.php");
 		$u_name = $_REQUEST['loginUsername'];
 		$p_word = $_REQUEST['loginPassword'];	
 		$obj = new users();

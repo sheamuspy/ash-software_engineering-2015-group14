@@ -1,6 +1,6 @@
 <?php
 
-include_once("equipment.php");
+include_once("../application/models/equipment.php");
 $obj= new equipment();
 $obj->display_equipment();
 $lab= new equipment();

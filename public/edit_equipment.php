@@ -11,7 +11,7 @@
 			if(!isset($_REQUEST['eid'])){
 				exit();
 			}		
-				include("equipment.php");
+				include("../application/models/equipment.php");
 				$obj = new equipment();
 				$eid=$_REQUEST['eid'];		
 				if(!$obj->view_equipment($eid)) {
@@ -37,7 +37,7 @@
 			<td>Lab:</td><td><select id="lid">
 						<option value="0">--Select Lab--</option>
 						<?php
-							include_once("labs.php");
+							include_once("../application/models/labs.php");
 							$sup=new labs();
 							$sup->get_all_labs();
 							while($sup_row=$sup->fetch()){
@@ -58,7 +58,7 @@
 			<tr>
 			<td>Supplier:</td><td> <select id="sid">
 							<?php
-							include_once("suppliers.php");
+							include_once("../application/models/suppliers.php");
 							$sup=new suppliers();
 							$sup->get_suppliers();
 							while($sup_row=$sup->fetch()){

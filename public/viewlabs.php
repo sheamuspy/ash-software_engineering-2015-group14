@@ -1,6 +1,6 @@
 
 		<?php
-		    include("labs.php");
+		    include("../application/models/labs.php");
 
 			$lab_id=$_REQUEST['lab_id'];
 

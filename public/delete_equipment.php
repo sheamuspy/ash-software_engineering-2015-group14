@@ -25,7 +25,7 @@
 	
 	<?php
 		if(isset($_REQUEST['en'])){
-			include("equipment.php");
+			include("../application/models/equipment.php");
 			$obj = new equipment();
 			$name=$_REQUEST['en'];
             $serial_number=$_REQUEST['sn'];

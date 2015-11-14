@@ -7,40 +7,40 @@ $cmd=$_REQUEST['cmd'];
 switch($cmd)
 {
 	case 1:
-		delete_supplier();
+		delete_lab();
 		break;
 	case 2:
-		search_suppliers();
+		search_labs();
 		break;
 	default:
 		echo '{"result":0,message:"unknown command"}';
 		break;
 }
 
-function delete_supplier(){
-	include_once("suppliers.php");
-	$obj=new suppliers();
+function delete_lab(){
+	include_once("../models/labs.php");
+	$obj=new labs();
 	$id=$_REQUEST['id'];
-	if($obj->delete_supplier($id)){
+	if($obj->delete_lab($id)){
 		echo '{"result":1,"message": "deleted"}';
 	}else{
-		echo '{"result":0,"message": "Supplier was not removed."}';
+		echo '{"result":0,"message": "lab not removed."}';
 	}
 }	
 
-function search_suppliers(){
+function search_labs(){
 	if(!isset($_REQUEST['st'])){
 		echo '{"result":0,"message": "search did not work."}';
 	}
 	$search_text=$_REQUEST['st'];
-	include_once("suppliers.php");
-	$obj=new suppliers();
-	if(!$obj->search_suppliers($search_text)){
+	include_once("../models/labs.php");
+	$obj=new labs();
+	if(!$obj->search_labs($search_text)){
 		echo '{"result":0,"message": "search did not work."}';
 		return;
 	}
 	$row=$obj->fetch();
-	echo '{"result":1,"suppliers":[';
+	echo '{"result":1,"labs":[';
 	$count=0;
 	while($row){
 		$count++;
