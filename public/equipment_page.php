@@ -10,11 +10,26 @@
 	<head>
 		<title>Equipment</title>
 		<link rel="stylesheet" href="css/style.css">
-		<script src="jquery-2.1.3.js"></script>
-        <script src="js/equipment_page.js"></script>
+        <link rel="stylesheet" href="css/materialize.min.css">
+		
         <script>var userId = <?php echo $_SESSION['USER_ID']; ?>;</script>
 	</head>
 	<body>
+        <header></header>
+        <main>
+            <div class="row">
+                
+                <div class="col s12 m4 13">
+                    
+                </div>
+                
+                <div class="col s12 m8 19">
+                    
+                </div>
+            </div>
+        </main>
+        <footer></footer>
+        
 		<table align='center'>
 			<tr>
 				<td colspan="2" id="pageheader">
@@ -80,7 +95,11 @@ $obj->display_equipment();
 	}
 				
 ?>
-					</div>
+					
 		</table>
+                        </div>
+                    <script src="jquery-2.1.3.js"></script>
+        <script src="js/equipment_page.js"></script>
+                    <script src="js/materialize.min.js"></script>
 	</body>
 </html>	
