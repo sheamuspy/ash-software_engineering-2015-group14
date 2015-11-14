@@ -6,11 +6,13 @@
 
 ?>
     <!DOCTYPE html>
-    <html>
+    <html lang="en" style="padding-right: 0px;">
 
     <head>
         <title>Equipment</title>
         <link rel="stylesheet" href="css/materialize.min.css">
+
+<!--        <link rel="stylesheet" href="css/ghpages-materialize.css">-->
         <link rel="stylesheet" href="css/style.css">
 
         <script>
@@ -23,65 +25,81 @@
         <!-- This is the page header -->
         <header>
 
-            <div id="pageheader">
-                <b>Ashesi Engineering Inventory</b>
-            </div>
+            <nav class="top-nav" id="pageheader">
+                <div class="container">
+                    <div class="nav-wrapper">
+                        <a class="page-title">Ashesi Engineering Inventory</a>
+                    </div>
+                </div>
+            </nav>
+
+            <ul id="mainnav" class="side-nav fixed" style="width: 240px;">
+                <li>
+                    <a href="#">
+                        <?php echo $_SESSION['USERNAME']?>
+                            <br> logged in</a>
+                </li>
+                <li>
+                    <a href="index.php">
+                        <div class="menuitem">Home</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="equipment_page.php">
+                        <div class="menuitem"><b>Equipment</b></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="labpage.php">
+                        <div class="menuitem">Labs</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="suppliers_page.php">
+                        <div class="menuitem">Supplier</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.php">
+                        <div class="menuitem">History</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="logout.php">
+                        <div class="menuitem">Logout</div>
+                    </a>
+                </li>
+            </ul>
 
         </header>
 
         <!-- This is the main section of the page -->
         <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m9 l10">
 
-            <div class="row">
 
-                <div class="col s12 m4 13">
-                    <div id="mainnav">
-                        <a href="#">
-                            <?php echo $_SESSION['USERNAME']?>
-                                <br> logged in</a>
-                        <a href="index.php" style="text-decoration:none">
-                            <div class="menuitem">Home</div>
-                        </a>
-                        <a href="equipment_page.php" style="text-decoration:none">
-                            <div class="menuitem"><b>Equipment</b></div>
-                        </a>
-                        <a href="labpage.php" style="text-decoration: none;">
-                            <div class="menuitem">Labs</div>
-                        </a>
-                        <a href="suppliers_page.php" style="text-decoration:none">
-                            <div class="menuitem">Supplier</div>
-                        </a>
-                        <a href="history.php" style="text-decoration: none;">
-                            <div class="menuitem">History</div>
-                        </a>
-                        <a href="logout.php" style="text-decoration: none;">
-                            <div class="menuitem">Logout</div>
-                        </a>
-                    </div>
-
-                </div>
-
-                <div class="col s12 m8 19">
-                    <div id="content">
-                        <div id="divPageMenu">
-                            <div style="float:left">
-                                <span id="change" class="menuitem" onclick="loadAddEquipmentForm()">Add Equipment</span>
-                                <span class="menuitem" id="edit" onclick="loadEditEquipmentForm()" hidden="true">Edit</span>
-                                <span class="menuitem" onclick="deleteEquip()" id="deleteE" hidden="true">Delete</span>
-                                <span class="menuitem" id="exit" onclick="exitView()" hidden="true">Exit</span>
+                        <div id="content">
+                            <div id="divPageMenu">
+                                <div style="float:left">
+                                    <span id="change" class="menuitem" onclick="loadAddEquipmentForm()">Add Equipment</span>
+                                    <span class="menuitem" id="edit" onclick="loadEditEquipmentForm()" hidden="true">Edit</span>
+                                    <span class="menuitem" onclick="deleteEquip()" id="deleteE" hidden="true">Delete</span>
+                                    <span class="menuitem" id="exit" onclick="exitView()" hidden="true">Exit</span>
+                                </div>
+                                <div align="right">
+                                    <input type="text" placeholder="Search" id="txtSearch" />
+                                    <span id="search" class="menuitem" onclick="search()">search</span>
+                                </div>
                             </div>
-                            <div align="right">
-                                <input type="text" placeholder="Search" id="txtSearch" />
-                                <span id="search" class="menuitem" onclick="search()">search</span>
+                            <div id="divStatus" class="status">
+                                status message
                             </div>
-                        </div>
-                        <div id="divStatus" class="status">
-                            status message
-                        </div>
-                        <div id="divContent">
-                            <div id="contentSpace"></div>
-                            <table id="tableExample" class="reportTable bordered" width="100%">
-                                <?php
+                            <div id="divContent">
+                                <div id="contentSpace"></div>
+                                <table id="tableExample" class="reportTable bordered" width="100%">
+                                    <?php
 
 include_once("../application/models/equipment.php");
 $obj= new equipment();
@@ -112,10 +130,12 @@ $obj->display_equipment();
 				
 ?>
 
-                            </table>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
+
         </main>
         <footer></footer>
 

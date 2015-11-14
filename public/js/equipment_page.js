@@ -1,3 +1,7 @@
+$(document).ready(function (){
+    $(".button-collapse").sideNav();
+});
+
 var curId;
 			
 //			function loadEquip(){

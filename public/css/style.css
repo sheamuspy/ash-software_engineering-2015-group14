@@ -1,136 +1,141 @@
-body{
-    background-color:#4b4b4b;
+body {
+    background-color: #4b4b4b;
 }
-table{
+table {
     background-color: white;
 }
-.clickspot{
-	text-decoration:underline;
-	color:#5E5ECC;
-	cursor:pointer
+.clickspot {
+    text-decoration: underline;
+    color: #5E5ECC;
+    cursor: pointer
 }
-.status{
-    text-align:center;
-	background-color:909090;
-    margin-top:10px;
+.status {
+    text-align: center;
+    background-color: 909090;
+    margin-top: 10px;
 }
-.error{
-	color:Red;
-	background-color:Yellow
+.error {
+    color: Red;
+    background-color: Yellow
 }
-
 .menuitem {
-	/*text-decoration:underline;*/
-	color:white;/*#5E5ECC;*/
-	cursor:hand;
-    padding:10px;
-    text-align:center;
+    /*text-decoration:underline;*/
+    color: white;
+    /*#5E5ECC;*/
+    cursor: hand;
+    padding: 10px;
+    text-align: center;
 }
-.menuitem:hover{
-	/*text-decoration:underline;*/
-	cursor:hand;
-	/*font-weight:bold;*/
+.menuitem:hover {
+    /*text-decoration:underline;*/
+    cursor: hand;
+    /*font-weight:bold;*/
     color: #E8BF5C
-	/*background-color:Silver*/
+    /*background-color:Silver*/
 }
-
-#mainnav .menuitem{
+#mainnav .menuitem {
     background-color: #6E0000;
     margin-top: 2px;
     margin-right: 0px;
     margin-left: 0px;
-
 }
-#divPageMenu{
+#divPageMenu {
     background-color: #6E0000;
     padding: 10px
-
 }
-
-#pageheader
-{
+#pageheader {
     height: 1in;
     background-color: #000080;
-	color:white;
+    color: white;
     font-size: large;
     text-align: center;
 }
-
-#mainnav{}
-
-
+#mainnav {}
 #content {
-	vertical-align:top;
-
-	
+    vertical-align: top;
 }
-
-.reportTable 
-{
-    border:1px;
-    border-collapse:collapse;
+.reportTable {
+    border: 1px;
+    border-collapse: collapse;
 }
-
-.reportTable .header
-{
+.reportTable .header {
     background-color: black;
     text-transform: uppercase;
     color: White;
 }
-
-.reportTable .row1
-{
+.reportTable .row1 {
     background-color: #FFE0B3;
 }
-
-.reportTable .row2
-{
-    background-color:White;
+.reportTable .row2 {
+    background-color: White;
 }
-
-.reportTable tr:hover
-{
-    background-color:#FFA375;
+.reportTable tr:hover {
+    background-color: #FFA375;
     cursor: hand;
 }
-
-.tableForm .label
-{
+.tableForm .label {
     background-color: #CC6600;
-    text-transform:capitalize;
+    text-transform: capitalize;
     color: White;
-    text-align:right;
+    text-align: right;
 }
-
-.tableForm .field
-{
+.tableForm .field {
     background-color: #FFAE35;
 }
-.popupMenu
-{
+.popupMenu {
     background-color: #DC7518;
     position: absolute;
-    display:none;
+    display: none;
     width: auto;
 }
-
-.popupMenu div
-{
+.popupMenu div {
     color: #FFFFFF;
     text-decoration: underline;
 }
-
-.popupMenu div:hover
-{
+.popupMenu div:hover {
     color: #FFFFFF;
     text-decoration: underline;
     background-color: #CC6600;
 }
-
-.popupForm
-{
+.popupForm {
     background-color: #DC7518;
     position: absolute;
-    display:none;
+    display: none;
     width: auto;
 }
+
+/*From external source ghpages-materialize*/
+
+.container {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 90%;
+}
+@media only screen and (min-width: 601px) {
+    .container {
+        width: 85%;
+    }
+}
+@media only screen and (min-width: 993px) {
+    .container {
+        width: 70%;
+    }
+}
+.container .row {
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
+}
+.header {
+    color: #ee6e73;
+    font-weight: 300;
+}
+header,
+main,
+footer {
+    padding-left: 240px;
+    display: block;
+}
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+    display: block;} }
