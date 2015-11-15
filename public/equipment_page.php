@@ -11,8 +11,6 @@
     <head>
         <title>Equipment</title>
         <link rel="stylesheet" href="css/materialize.min.css">
-
-<!--        <link rel="stylesheet" href="css/ghpages-materialize.css">-->
         <link rel="stylesheet" href="css/style.css">
 
         <script>
@@ -33,40 +31,43 @@
                 </div>
             </nav>
 
-            <ul id="mainnav" class="side-nav fixed" style="width: 240px;">
+            <ul id="mainnav" class="side-nav fixed " style="width: 240px;">
+                <li id="logo">
+    <img class="responsive-img circle center" src="images/logo.png">
+        </li>
                 <li>
                     <a href="#">
                         <?php echo $_SESSION['USERNAME']?>
-                            <br> logged in</a>
+                            logged in</a>
                 </li>
                 <li>
                     <a href="index.php">
-                        <div class="menuitem">Home</div>
+                        <div >Home</div>
                     </a>
                 </li>
                 <li>
                     <a href="equipment_page.php">
-                        <div class="menuitem"><b>Equipment</b></div>
+                        <div><b>Equipment</b></div>
                     </a>
                 </li>
                 <li>
                     <a href="labpage.php">
-                        <div class="menuitem">Labs</div>
+                        <div>Labs</div>
                     </a>
                 </li>
                 <li>
                     <a href="suppliers_page.php">
-                        <div class="menuitem">Supplier</div>
+                        <div>Supplier</div>
                     </a>
                 </li>
                 <li>
                     <a href="history.php">
-                        <div class="menuitem">History</div>
+                        <div>History</div>
                     </a>
                 </li>
                 <li>
                     <a href="logout.php">
-                        <div class="menuitem">Logout</div>
+                        <div>Logout</div>
                     </a>
                 </li>
             </ul>
@@ -75,12 +76,12 @@
 
         <!-- This is the main section of the page -->
         <main>
-            <div class="container">
+<!--            <div class="container">-->
                 <div class="row">
-                    <div class="col s12 m9 l10">
+                    <div class="col s12 m9 l12">
 
 
-                        <div id="content">
+                        <div id="content" class="card-panel grey lighten-2">
                             <div id="divPageMenu">
                                 <div style="float:left">
                                     <span id="change" class="menuitem" onclick="loadAddEquipmentForm()">Add Equipment</span>

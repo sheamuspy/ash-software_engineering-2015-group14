@@ -1,5 +1,5 @@
 body {
-    background-color: #4b4b4b;
+    background-color: #ffffff;
 }
 table {
     background-color: white;
@@ -34,7 +34,7 @@ table {
     /*background-color:Silver*/
 }
 #mainnav .menuitem {
-    background-color: #6E0000;
+    background-color: #AD3637;
     margin-top: 2px;
     margin-right: 0px;
     margin-left: 0px;
@@ -45,12 +45,14 @@ table {
 }
 #pageheader {
     height: 1in;
-    background-color: #000080;
+    background-color: #767676;
     color: white;
     font-size: large;
     text-align: center;
 }
-#mainnav {}
+#mainnav {
+    background-color: #AD3637;
+}
 #content {
     vertical-align: top;
 }
@@ -139,3 +141,8 @@ footer {
   header, main, footer {
     padding-left: 0;
     display: block;} }
+#logo{
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 40px;
+}
