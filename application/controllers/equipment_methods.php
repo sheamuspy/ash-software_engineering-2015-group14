@@ -22,6 +22,10 @@
 		case 5:
 			get_last();
 			break;
+        case 6:
+            view();
+            break;
+
 		default:
 			break;
 	
@@ -133,5 +137,19 @@
 			echo '{"result":1, "response":'.$response['equipment_id'].'}';
 		}
 	}
+
+function view(){
+    include_once("../models/equipment.php");
+    $obj= new equipment();
+    $obj->connect();
+    $eid = $_REQUEST['id'];
+    if($obj->view_equipment($eid)){
+        	$row=$obj->fetch();
+	echo '{"result":1,"equipment":['.json_encode($row).'], "message":"success","numRows":1}';
+    } else{
+	echo '{"result":0,"equipment":[], "message":"failure","numRows":}';
+    }
+
+}
 	
 ?>

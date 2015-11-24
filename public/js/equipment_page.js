@@ -112,6 +112,14 @@ var curId;
 					
 				}
             }
+            function deleteEquip(eid){
+				var objResult= sendRequest("http://localhost/software_engineering/EIMS/application/controllers/equipment_methods.php?cmd=6&id="+eid);
+				if(objResult.result==1){
+					location.reload();
+					divStatus.innerHTML = objResult.message;
+
+				}
+            }
 			
 			function exitView(){
 				contentSpace.innerHTML="";

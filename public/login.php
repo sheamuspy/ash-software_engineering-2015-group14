@@ -1,22 +1,22 @@
 <?php
-	if(isset($_REQUEST['loginUsername'])){
-		session_start();
-		
-		include_once("../application/models/users.php");
-		$u_name = $_REQUEST['loginUsername'];
-		$p_word = $_REQUEST['loginPassword'];	
-		$obj = new users();
-		$row = $obj->user_password_validation($u_name,$p_word);
-		if(!$row){
-			echo "wrong credentials";
-		}else{
-			$_SESSION['USER_ID'] = $row['user_id'];
-			$_SESSION['USERNAME'] = $row['user_name'];
-			$_SESSION['PASSWORD'] = $_REQUEST['password'];
-			header("location:index.php");
-		}
+if (isset($_REQUEST['loginUsername'])) {
+    session_start();
+    include_once("../application/models/users.php");
+    $u_name = $_REQUEST['loginUsername'];
+	$p_word = $_REQUEST['loginPassword'];
+	$obj = new users();
+	$row = $obj->user_password_validation($u_name,$p_word);
+	if (!$row) {
+		echo "wrong credentials";
+	} else {
+		$_SESSION['USER_ID'] = $row['user_id'];
+		$_SESSION['USERNAME'] = $row['user_name'];
+		$_SESSION['PASSWORD'] = $_REQUEST['password'];
+		header("location:index.php");
 	}
+}
 ?>
+<!DOCTYPE html>
 <html>
 	<head>
 	<script src="jquery-2.1.3.js"></script>
