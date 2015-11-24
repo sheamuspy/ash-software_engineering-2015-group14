@@ -42,7 +42,7 @@
                 </li>
                 <li>
                     <a href="index.php">
-                        <div >Home</div>
+                        <div>Home</div>
                     </a>
                 </li>
                 <li>
@@ -93,7 +93,22 @@
                                     <input type="text" placeholder="Search" id="txtSearch" />
                                     <span id="search" class="menuitem" onclick="search()">search</span>
                                 </div>
+                                <!-- Modal Trigger -->
+                                <button data-target="modal1" class="btn modal-trigger"> Add Equipment</button>
                             </div>
+                            <!-- Modal Trigger -->
+        <a class="modal-trigger waves-effect waves-light btn" href="#addmodal">Add Equipment</a>
+
+      <!-- Modal Structure -->
+      <div id="addmodal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <h4>Add Equipment</h4>
+          <p>A bunch of text</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+        </div>
+      </div>
                             <div id="divStatus" class="status">
                                 status message
                             </div>

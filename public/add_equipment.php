@@ -7,6 +7,19 @@
 		</script>
 	</head>
 	<body>
+	    <!-- Modal Trigger -->
+	    <a class="modal-trigger waves-effect waves-light btn" href="#addmodal">Add Equipment</a>
+
+	  <!-- Modal Structure -->
+	  <div id="addmodal" class="modal modal-fixed-footer">
+	    <div class="modal-content">
+	      <h4>Add Equipment</h4>
+	      <p>A bunch of text</p>
+	    </div>
+	    <div class="modal-footer">
+	      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+	    </div>
+      </div>
 		<table>
 			<tr>
 				<td>Equipment Name: </td><td><input type="text" id="en" required></td>
