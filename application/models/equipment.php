@@ -29,8 +29,7 @@ class equipment extends adb
 	function edit_equipment($eid, $sn, $in, $name, $lid, $dp, $sid, $desc)
 	{
 		$str_query="UPDATE webtech_project_equipment SET serial_number='$sn',
-							inventory_number='$in',
-							equipment_name='$name',
+							inventory_number='$in', equipment_name='$name',
 							lab_id=$lid,
 							date_purchased='$dp',
 							supplier_id=$sid,
@@ -42,17 +41,17 @@ class equipment extends adb
 	function display_equipment() 
 	{
 		$str_query = "SELECT equipment_id, serial_number, equipment_name, lab_id, date_purchased
-		FROM webtech_project_equipment"; 
+		    FROM webtech_project_equipment"; 
 		return $this->query($str_query);
 	}
 
     function view_equipment($eid) 
     {
-    $str_query = "SELECT * FROM webtech_project_equipment INNER JOIN webtech_project_labs
+        $str_query = "SELECT * FROM webtech_project_equipment INNER JOIN webtech_project_labs
              ON webtech_project_equipment.lab_id=webtech_project_labs.lab_id JOIN webtech_project_supplier
              ON webtech_project_equipment.supplier_id=webtech_project_supplier.supplier_id
              WHERE webtech_project_equipment.equipment_id=$eid";
-            return $this->query($str_query);
+        return $this->query($str_query);
     }
 
     function display_labname($lid) 
@@ -76,10 +75,10 @@ class equipment extends adb
 
     function search_equipment($equipment)
     {
-$str_query = "SELECT * FROM webtech_project_equipment INNER JOIN webtech_project_supplier ON 
-			webtech_project_supplier.supplier_id = webtech_project_equipment.supplier_id INNER JOIN 
-			webtech_project_labs ON webtech_project_equipment.lab_id = webtech_project_labs.lab_id 
-			WHERE webtech_project_equipment.equipment_name LIKE'$equipment%'";
-			return $this->query($str_query);
+        $str_query = "SELECT * FROM webtech_project_equipment INNER JOIN webtech_project_supplier ON 
+	        webtech_project_supplier.supplier_id = webtech_project_equipment.supplier_id INNER JOIN 
+		    webtech_project_labs ON webtech_project_equipment.lab_id = webtech_project_labs.lab_id 
+		    WHERE webtech_project_equipment.equipment_name LIKE'$equipment%'";
+	return $this->query($str_query);
     }
 }

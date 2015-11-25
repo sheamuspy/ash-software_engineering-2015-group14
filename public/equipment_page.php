@@ -15,7 +15,20 @@
 
         <script>
             var userId = <?php echo $_SESSION['USER_ID']; ?>;
-        </script>
+            </script>
+                <script>
+                function addEquipment() {
+                    var search_text=txtSearch.value;
+                    var strUrl="equipment_methods.php?cmd=1";
+                    var objResult=sendRequest(strUrl);
+                    if (objResult.result==0) {
+                        $("#divStatus").text(objResult.message);
+                        return;
+                    }
+                }
+                </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     </head>
 
@@ -89,33 +102,98 @@
                                     <span class="menuitem" onclick="deleteEquip()" id="deleteE" hidden="true">Delete</span>
                                     <span class="menuitem" id="exit" onclick="exitView()" hidden="true">Exit</span>
                                 </div>
+                                
                                 <div align="right">
+                                     <!-- Modal Trigger -->
+                               <button data-target="#addmodal" class="btn modal-trigger" data-toggle="modal" aligh="right">Add Equipment</button>
                                     <input type="text" placeholder="Search" id="txtSearch" />
                                     <span id="search" class="menuitem" onclick="search()">search</span>
                                 </div>
-                                <!-- Modal Trigger -->
-                                <button data-target="modal1" class="btn modal-trigger"> Add Equipment</button>
+                                
                             </div>
-                            <!-- Modal Trigger -->
-        <a class="modal-trigger waves-effect waves-light btn" href="#addmodal">Add Equipment</a>
 
       <!-- Modal Structure -->
-      <div id="addmodal" class="modal modal-fixed-footer">
-        <div class="modal-content">
+      <div id="addmodal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content -->
+            <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4>Add Equipment</h4>
-          <p>A bunch of text</p>
+        </div>
+          <div class="modal-body">
+          <table>
+            <tr>
+                <td>Equipment Name: </td><td><input type="text" id="en" required></td>
+            </tr>
+            <tr>
+                <td>Serial Number: </td><td><input type="text" id="sn" required></td>
+            </tr>
+            <tr>
+                <td>Inventory Number: </td><td><input type="text" id="inv" size="30" required></td>
+            </tr>
+                <td>Lab ID:</td><td><select id="lid">
+                            <option value="0">--Select Lab--</option>
+                            <?php
+                            include_once("../application/models/labs.php");
+                            $sup=new labs();
+                            
+                            $sup->get_all_labs();
+                            while($sup_row=$sup->fetch()){
+                                
+                                if($sup_row['lab_id']==$row['lab_id']){
+                                    echo "<option value='{$sup_row['lab_id']}' selected>{$sup_row['lab_name']}</option>";
+                                }else{
+                                    echo "<option value='{$sup_row['lab_id']}'>{$sup_row['lab_name']}</option>";
+                                }
+                                
+                            }
+                        ?>
+                </td>
+            <tr>
+                <td>Date Purchased:</td><td> <input type="date" class="datepicker" id="dp" size="30" required></td>
+            </tr>
+            <tr>
+                <td>Supplier ID:</td><td> <select id="sid">
+                                <option value="0">--Select Supplier--</option>
+                                <?php
+                            include_once("../application/models/suppliers.php");
+                            $sup=new suppliers();
+                            
+                            $sup->get_suppliers();
+                            while($sup_row=$sup->fetch()){
+                                
+                                if($sup_row['supplier_id']==$row['supplier_id']){
+                                    echo "<option value='{$sup_row['supplier_id']}' selected>{$sup_row['supplier_name']}</option>";
+                                }else{
+                                    echo "<option value='{$sup_row['supplier_id']}'>{$sup_row['supplier_name']}</option>";
+                                }
+                                
+                            }
+                        ?>
+                </td>
+            </tr>
+            <tr>
+                <td>Description:</td> <td><textarea id="ed" cols="30" rows="5"required></textarea></td>
+            <tr><td>
+                </td><td><input type="submit" onclick="addEquipment()" value="ADD"></td>
+            </tr>
+        </table>
         </div>
         <div class="modal-footer">
-          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+          <button type="button" class="btn btn-default" data-dismiss="modal">ADD</button>
         </div>
       </div>
-                            <div id="divStatus" class="status">
-                                status message
-                            </div>
-                            <div id="divContent">
-                                <div id="contentSpace"></div>
-                                <table id="tableExample" class="reportTable bordered" width="100%">
-                                    <?php
+      </div>
+      </div>
+    
+    <div id="divStatus" class="status">
+        status message
+    </div>
+    <div id="divContent">
+            <div id="contentSpace"></div>
+    <table id="tableExample" class="reportTable bordered" width="100%">
+    <?php
 
 include_once("../application/models/equipment.php");
 $obj= new equipment();
