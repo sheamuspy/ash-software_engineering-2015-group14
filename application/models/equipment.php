@@ -26,15 +26,13 @@ class equipment extends adb
 	}
 	*/
 
+	//edits equipment in database
 	function edit_equipment($eid, $sn, $in, $name, $lid, $dp, $sid, $desc)
 	{
-		$str_query="UPDATE webtech_project_equipment SET serial_number='$sn',
-							inventory_number='$in', equipment_name='$name',
-							lab_id=$lid,
-							date_purchased='$dp',
-							supplier_id=$sid,
-							description='$desc'
-							WHERE webtech_project_equipment.equipment_id=$eid";
+		//query that updates an equipment in database
+		$str_query = "UPDATE webtech_project_equipment SET serial_number ='$sn',
+		    inventory_number = '$in', equipment_name = '$name', lab_id = $lid,
+			date_purchased = '$dp', supplier_id = $sid, description = '$desc' WHERE webtech_project_equipment.equipment_id = $eid";
 		return $this->query($str_query);
 	}
 
