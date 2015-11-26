@@ -55,8 +55,8 @@
 		echo	"</tr>";
 		echo "<ol>";
 		while ($row= mysql_fetch_assoc($result)) {
-                echo "<tr><td><li><'view.php?pid=".$row['equipment_id']."'>".$row['equipment_name']."</td>";
-				echo "<td><'view.php?pid=".$row['equipment_id']."'>".$row['equipment_id']."</td>";
+                echo "<tr><td><li><a href = 'view.php?pid=".$row['equipment_id']."'>".$row['equipment_name']."</a></td>";
+				echo "<td><a href = 'view.php?pid=".$row['equipment_id']."'>".$row['equipment_id']."</a></td>";
                 echo "<td><a href = 'view.php?pid=".$row['equipment_id']."'>".$row['date_purchased']."</a></td>";
                 echo "<td><a href = 'view.php?pid=".$row['equipment_id']."'>".$row['lab_id']."</a></td>";
 				echo "<td><a href = 'edit_equipment.php?pid=".$row['equipment_id']."'>".'[edit]'."</a></td>";
