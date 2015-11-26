@@ -41,12 +41,12 @@
 			$searchText = $_REQUEST['st'];
 		}
     //form for user input
-		echo "<form action='searchpage.php' method='GET'>"
+		echo "<form action='search_equipment.php' method='GET'>"
 			."<input type='text' name='st' value='$searchText'>"
 			."<input type='submit' value='search'>"
 			. "</form>";
     //sql statement to query the database
-			$query = "Select product_id, product_name, price From products where product_name like '%$searchText%'";
+			$query = "Select equipment_id, equipment_name, lab_id, supplier_id From webtech_project_equipment where equipment_name like '%$searchText%'";
 
 			$result = mysql_query($query);
 		echo	"<table border = '1'>";
@@ -54,7 +54,7 @@
 		echo	"<td>Product Name</td><td>Price</td>";
 		echo	"</tr>";
 		echo "<ol>";
-		while ($row = mysql_fetch_assoc($result)) {
+		while ($row= mysql_fetch_assoc($result)) {
 				echo "<tr><td><li><a href = 'viewpage.php?pid=".$row['product_id']."'>".$row['product_name']."</a></td>";
 				//echo " ";
 				echo "<td><a href = 'viewpage.php?pid=".$row['product_id']."'>".$row['price']."</a></td>";
