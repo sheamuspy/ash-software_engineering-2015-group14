@@ -24,7 +24,7 @@
 		$server = "localhost";
 		$username="root";
 		$password="";
-		$database = "webtech";
+		$database = "engineering_inventory";
 
 		$link = mysql_connect($server, $username, $password);
 		if (! $link) {
