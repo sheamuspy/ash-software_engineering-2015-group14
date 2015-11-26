@@ -22,16 +22,16 @@
 			exit();
 		}
 
-		$search_text = "";
+		$searchText = "";
 		if (isset($_REQUEST['st'])) {
-			$search_text=$_REQUEST['st'];
+			$searchText=$_REQUEST['st'];
 		}
 		echo "<form action='searchpage.php' method='GET'>"
-			."<input type='text' name='st' value='$search_text'>"
+			."<input type='text' name='st' value='$searchText'>"
 			."<input type='submit' value='search'>"
 			. "</form>";
 
-			$query = "Select product_id, product_name, price From products where product_name like  '%$search_text%'";
+			$query = "Select product_id, product_name, price From products where product_name like  '%$searchText%'";
 			$result= mysql_query($query);
 		echo	"<table border = '1'>";
 		echo	"<tr>";
