@@ -51,7 +51,7 @@
 			$result = mysql_query($query);
 		echo	"<table border = '1'>";
 		echo	"<tr>";
-		echo	"<td>Product Name</td><td>Price</td>";
+		echo	"<td>Equipment Name</td><td>Equipment ID</td><td>Date of Purchase</td><td>Lab ID</td>";
 		echo	"</tr>";
 		echo "<ol>";
 		while ($row= mysql_fetch_assoc($result)) {
