@@ -20,7 +20,7 @@
 	<body>
 		<a href="add_equipment.php">Click to Add Product</a>
 		<?php
-
+    //connect to the inventory databse
 		$server = "localhost";
 		$username="root";
 		$password="";
@@ -40,12 +40,14 @@
 		if (isset($_REQUEST['st'])) {
 			$searchText = $_REQUEST['st'];
 		}
+    //form for user input
 		echo "<form action='searchpage.php' method='GET'>"
 			."<input type='text' name='st' value='$searchText'>"
 			."<input type='submit' value='search'>"
 			. "</form>";
-
+    //sql statement to query the database
 			$query = "Select product_id, product_name, price From products where product_name like '%$searchText%'";
+
 			$result = mysql_query($query);
 		echo	"<table border = '1'>";
 		echo	"<tr>";
