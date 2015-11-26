@@ -56,10 +56,10 @@
 		echo "<ol>";
 		while ($row= mysql_fetch_assoc($result)) {
 				echo "<tr><td><li><a href = 'view.php?pid=".$row['equipment_id']."'>".$row['equipment_name']."</a></td>";
-				echo "<td><a href = 'view.php?pid=".$row['product_id']."'>".$row['price']."</a></td>";
-				echo "<td><a href = 'edit_equipment.php?pid=".$row['product_id']."'>".'[edit]'."</a></td>";
+				echo "<td><a href = 'view.php?pid=".$row['equipment_id']."'>".$row['equipment_name']."</a></td>";
+				echo "<td><a href = 'edit_equipment.php?pid=".$row['equipment_id']."'>".'[edit]'."</a></td>";
 				//echo " ";
-				echo "<td><a href = 'deletepage.php?pid=".$row['product_id']."'>".'[delete]'."</a></li></td></tr>";
+				echo "<td><a href = 'delete_equipment.php?pid=".$row['equipment_id']."'>".'[delete]'."</a></li></td></tr>";
 		}
 		echo "</ol>";
 		echo "</table>";
