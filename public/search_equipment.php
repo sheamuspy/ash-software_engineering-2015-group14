@@ -1,3 +1,17 @@
+/**
+* A method to search equipment in the database
+*
+* The file contains the sql statements to search for an equipment in the inventory database
+*
+* LICENSE:
+*
+* @Category Zend
+* @Package
+* @Copyright
+* @license
+* @version 1.0.1
+*/
+
 <html>
     <head>
         <meta charset="UTF-8">
