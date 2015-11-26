@@ -46,7 +46,7 @@
 			."<input type='submit' value='search'>"
 			. "</form>";
     //sql statement to query the database
-			$query = "Select equipment_id, equipment_name, lab_id, supplier_id From webtech_project_equipment where equipment_name like '%$searchText%'";
+			$query = "Select equipment_id, equipment_name, lab_id, date_purchased From webtech_project_equipment where equipment_name like '%$searchText%'";
 
 			$result = mysql_query($query);
 		echo	"<table border = '1'>";
@@ -55,8 +55,10 @@
 		echo	"</tr>";
 		echo "<ol>";
 		while ($row= mysql_fetch_assoc($result)) {
-				echo "<tr><td><li><a href = 'view.php?pid=".$row['equipment_id']."'>".$row['equipment_name']."</a></td>";
-				echo "<td><a href = 'view.php?pid=".$row['equipment_id']."'>".$row['equipment_name']."</a></td>";
+                echo "<tr><td><li><'view.php?pid=".$row['equipment_id']."'>".$row['equipment_name']."</td>";
+				echo "<td><'view.php?pid=".$row['equipment_id']."'>".$row['equipment_id']."</td>";
+                echo "<td><a href = 'view.php?pid=".$row['equipment_id']."'>".$row['date_purchased']."</a></td>";
+                echo "<td><a href = 'view.php?pid=".$row['equipment_id']."'>".$row['lab_id']."</a></td>";
 				echo "<td><a href = 'edit_equipment.php?pid=".$row['equipment_id']."'>".'[edit]'."</a></td>";
 				//echo " ";
 				echo "<td><a href = 'delete_equipment.php?pid=".$row['equipment_id']."'>".'[delete]'."</a></li></td></tr>";
