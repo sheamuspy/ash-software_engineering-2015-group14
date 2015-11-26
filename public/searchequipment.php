@@ -1,12 +1,12 @@
 <html>
-	<head>
-		<meta charset="UTF-8">
+    <head>
+        <meta charset="UTF-8">
 		<title></title>
 	</head>
 	<body>
-		<a href="addpage.php">Click to Add Product</a>
+		<a href="add_equipment.php">Click to Add Product</a>
 		<?php
-		
+
 		$server = "localhost";
 		$username="root";
 		$password="";
@@ -31,7 +31,7 @@
 			."<input type='submit' value='search'>"
 			. "</form>";
 			
-			$query = "Select product_id, product_name, price From products where product_name like '%$search_text%'";
+			$query = "Select product_id, product_name, price From products where product_name like  '%$search_text%'";
 			$result= mysql_query($query);
 		echo	"<table border = '1'>";
 		echo	"<tr>";
