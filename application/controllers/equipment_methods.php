@@ -98,7 +98,7 @@
 	}
 	function search_equipment(){
 	if(!isset($_REQUEST['st'])){
-		echo '{"result":0,"message": "search did not work."}';
+		echo '{"result":0,"message": "no search text."}';
 	}
 	$search_text=$_REQUEST['st'];
 	include_once("../models/equipment.php");

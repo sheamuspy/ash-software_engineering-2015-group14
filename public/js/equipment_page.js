@@ -78,7 +78,7 @@ var curId;
 			
             function search(){
 				var search_text=txtSearch.value;
-				var strUrl="http://localhost/software_engineering/EIMS/application/controllers/equipment_methods.php?cmd=4&st="+search_text;
+				var strUrl="http://localhost/SE/ash-software_engineering-2015-group14/application/controllers/equipment_methods.php?cmd=4&st="+search_text;
 				var objResult=sendRequest(strUrl);
 				if(objResult.result==1){
 					obj=objResult.equipment;
