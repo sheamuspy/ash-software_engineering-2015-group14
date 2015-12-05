@@ -1,4 +1,15 @@
 <?php
+/**
+ * author: Rahila Sule
+ * description: A php file containing all equipment methods. This is an ajax page
+ */
+
+//type of request
+//1: add equipment
+//2: edit equipment
+//3: delete equipment
+//4: search for equipment
+//5:get last equipment
 
 	if (!isset($_REQUEST['cmd'])) {
 	    exit();
@@ -32,7 +43,7 @@
 			break;
 	}
 	
-	
+	//php function that adds equipment
 	function add_equipment()
 	{
 	    if (isset($_REQUEST['en'])) {
@@ -54,6 +65,7 @@
 		
 			if (!$obj->add_equipment($serial_number, $inventory_number, $name, $lab_id,
 			     $date_purchased, $supplier_id, $description, $user_id)) {
+				//return a JSON string to browser when request comes to get description
 				echo '{"result":0,"message":"Sorry we could not execute the query."}';
                 
 			} else {
@@ -62,6 +74,7 @@
 		}	
 	}
 
+	//php function that edits equipment details
 	function edit_equipment() 
 	{
 		if (isset($_REQUEST['en'])) {
@@ -90,7 +103,7 @@
 		
 	}
 	
-	/*
+	/* the group decided equipment should not be deleted from database
 	function delete_equipment()
 	{
 		include_once("../models/equipment.php");

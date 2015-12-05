@@ -35,8 +35,7 @@ class labs extends adb{
 	}
 
 	function get_all_labs(){
-		$str_query="SELECT * FROM
-					webtech_project_labs";
+		$str_query="SELECT * FROM webtech_project_labs";
 		return $this->query($str_query);
 	}
 }

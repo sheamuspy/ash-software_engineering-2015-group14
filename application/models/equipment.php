@@ -1,4 +1,8 @@
 <?php
+/**
+ * author: Rahila Sule
+ * description: A class to manage(add, edit etc) all equipment. This class communicates(queries) with DB
+ */
 include_once("adb.php");
 class equipment extends adb
 {

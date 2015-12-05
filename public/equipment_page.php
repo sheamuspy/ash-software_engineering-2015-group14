@@ -1,4 +1,8 @@
 <?php
+/**
+ * author: Rahila Sule
+ * description: A php file that contains html for the equipment tab landing page. It displays a list of equipment
+ */
 	session_start();
 	if(!isset($_SESSION['USERNAME'])){
 		header("location:login.php");
@@ -15,18 +19,8 @@
 
         <script>
             var userId = <?php echo $_SESSION['USER_ID']; ?>;
-            </script>
-                <script>
-                function addEquipment() {
-                    var search_text=txtSearch.value;
-                    var strUrl="equipment_methods.php?cmd=1";
-                    var objResult=sendRequest(strUrl);
-                    if (objResult.result==0) {
-                        $("#divStatus").text(objResult.message);
-                        return;
-                    }
-                }
-                </script>
+        </script>
+        <script src="js/equipment_page.js"> </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -45,24 +39,29 @@
             </nav>
 
             <ul id="mainnav" class="side-nav fixed " style="width: 240px;">
-                <li id="logo">
-    <img class="responsive-img circle center" src="images/logo.png">
-        </li>
-                <li>
-                    <a href="#">
-                        <?php echo $_SESSION['USERNAME']?>
-                            logged in</a>
-                </li>
-                <li>
-                    <a href="index.php">
-                        <div>Home</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="equipment_page.php">
+
+            <li id="logo">
+                <img class="responsive-img circle center" src="images/logo.png">
+            </li>
+
+            <li>
+                <a href="#"> Welcome, 
+                    <?php echo $_SESSION['USERNAME']?>
+                 </a>
+            </li>
+
+             <li>
+                <a href="index.php">
+                    <div>Home</div>
+                </a>
+            </li>
+
+             <li>
+                <a href="equipment_page.php">
                         <div><b>Equipment</b></div>
-                    </a>
-                </li>
+                </a>
+            </li>
+
                 <li>
                     <a href="labpage.php">
                         <div>Labs</div>
@@ -97,15 +96,15 @@
                         <div id="content" class="card-panel grey lighten-2">
                             <div id="divPageMenu">
                                 <div style="float:left">
-                                    <span id="change" class="menuitem" onclick="loadAddEquipmentForm()">Add Equipment</span>
-                                    <span class="menuitem" id="edit" onclick="loadEditEquipmentForm()" hidden="true">Edit</span>
+                                   <!-- <span id="change" class="menuitem" onclick="loadAddEquipmentForm()">Add Equipment</span> -->
+                                    <span class="menuitem modal-trigger" href="#editmodal" id="edit" hidden="true">Edit</span>
                                     <span class="menuitem" onclick="deleteEquip()" id="deleteE" hidden="true">Delete</span>
                                     <span class="menuitem" id="exit" onclick="exitView()" hidden="true">Exit</span>
                                 </div>
                                 
                                 <div align="right">
                                      <!-- Modal Trigger -->
-                               <button data-target="#addmodal" class="btn modal-trigger" data-toggle="modal" aligh="right">Add Equipment</button>
+                               <button class="waves-effect waves-light btn modal-trigger" href="#addmodal" aligh="right">Add Equipment</button>
                                     <input type="text" placeholder="Search" id="txtSearch" />
                                     <span id="search" class="menuitem" onclick="search()">search</span>
                                 </div>
@@ -113,15 +112,12 @@
                             </div>
 
       <!-- Modal Structure -->
-      <div id="addmodal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+      <div id="addmodal" class="modal modal-fixed-footer">
             <!-- Modal content -->
-            <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="modal-content">
+        
           <h4>Add Equipment</h4>
-        </div>
-          <div class="modal-body">
+
           <table>
             <tr>
                 <td>Equipment Name: </td><td><input type="text" id="en" required></td>
@@ -132,7 +128,8 @@
             <tr>
                 <td>Inventory Number: </td><td><input type="text" id="inv" size="30" required></td>
             </tr>
-                <td>Lab ID:</td><td><select id="lid">
+                <td>Lab ID:</td>
+                <td><select class="browser-default" id="lid">
                             <option value="0">--Select Lab--</option>
                             <?php
                             include_once("../application/models/labs.php");
@@ -141,20 +138,21 @@
                             $sup->get_all_labs();
                             while($sup_row=$sup->fetch()){
                                 
-                                if($sup_row['lab_id']==$row['lab_id']){
-                                    echo "<option value='{$sup_row['lab_id']}' selected>{$sup_row['lab_name']}</option>";
-                                }else{
+                                // if($sup_row['lab_id']==$row['lab_id']){
+                                    // echo "<option value='{$sup_row['lab_id']}' selected>{$sup_row['lab_name']}</option>";
+                                // }else{
                                     echo "<option value='{$sup_row['lab_id']}'>{$sup_row['lab_name']}</option>";
-                                }
+                                // }
                                 
                             }
                         ?>
+                    </select>
                 </td>
             <tr>
                 <td>Date Purchased:</td><td> <input type="date" class="datepicker" id="dp" size="30" required></td>
             </tr>
             <tr>
-                <td>Supplier ID:</td><td> <select id="sid">
+                <td>Supplier ID:</td><td> <select class="browser-default" id="sid">
                                 <option value="0">--Select Supplier--</option>
                                 <?php
                             include_once("../application/models/suppliers.php");
@@ -163,11 +161,11 @@
                             $sup->get_suppliers();
                             while($sup_row=$sup->fetch()){
                                 
-                                if($sup_row['supplier_id']==$row['supplier_id']){
-                                    echo "<option value='{$sup_row['supplier_id']}' selected>{$sup_row['supplier_name']}</option>";
-                                }else{
+                                // if($sup_row['supplier_id']==$row['supplier_id']){
+                                //     echo "<option value='{$sup_row['supplier_id']}' selected>{$sup_row['supplier_name']}</option>";
+                                // }else{
                                     echo "<option value='{$sup_row['supplier_id']}'>{$sup_row['supplier_name']}</option>";
-                                }
+                                // }
                                 
                             }
                         ?>
@@ -175,15 +173,84 @@
             </tr>
             <tr>
                 <td>Description:</td> <td><textarea id="ed" cols="30" rows="5"required></textarea></td>
-            <tr><td>
-                </td><td><input type="submit" onclick="addEquipment()" value="ADD"></td>
-            </tr>
+</tr>
         </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">ADD</button>
+            <a href="#!" onclick="addEquipment()" class="modal-action modal-close waves-effect waves-green btn-flat ">ADD</a>
         </div>
+      
       </div>
+      </div>
+
+      <!-- Modal Structure -->
+      <div id="editmodal" class="modal modal-fixed-footer">
+            <!-- Modal content -->
+                <div class="modal-content">
+        
+          <h4>Edit Equipment</h4>
+
+
+          <table>
+    <tr>
+    <td>Equipment Name:</td><td> <input type="text" value="<?php echo $row['equipment_name']?>" id="en" required></td>
+    </tr>
+    <tr>
+    <td>Serial Number: </td><td><input type="text" value="<?php echo $row['serial_number']?>" id="sn" required></td>
+    </tr>
+    
+    <tr>
+    <td>Inventory Number:</td><td> <input type="text" value="<?php echo $row['inventory_number']?>" id="inv" required></td>
+    </tr>
+    <tr>
+    <td>Lab:</td><td><select id="lid" required>
+                <option value="0">--Select Lab--</option>
+                <?php
+                    include_once("../application/models/labs.php");
+                    $sup=new labs();
+                    $sup->get_all_labs();
+                    while($sup_row=$sup->fetch()){
+                        
+                        if($sup_row['lab_id']==$row['lab_id']){
+                            echo "<option value='{$sup_row['lab_id']}' selected>{$sup_row['lab_name']}</option>";
+                        }else{
+                            echo "<option value='{$sup_row['lab_id']}'>{$sup_row['lab_name']}</option>";
+                        }
+                        
+                    }
+                ?>
+                </td>
+    </tr>
+    <tr>
+    <td>Date Purchased:</td><td> <input type="date" value="<?php echo $row['date_purchased']?>" id="dp" required></td>
+    </tr>
+    <tr>
+    <td>Supplier:</td><td> <select id="sid" required>
+                    <?php
+                    include_once("../application/models/suppliers.php");
+                    $sup=new suppliers();
+                    $sup->get_suppliers();
+                    while($sup_row=$sup->fetch()){
+                        
+                        if($sup_row['supplier_id']==$row['supplier_id']){
+                            echo "<option value='{$sup_row['supplier_id']}' selected>{$sup_row['supplier_name']}</option>";
+                        }else{
+                            echo "<option value='{$sup_row['supplier_id']}'>{$sup_row['supplier_name']}</option>";
+                        }
+                        
+                    }
+                ?>
+    </td>
+    </tr>
+    <tr>
+    <td>Description: </td><td><textarea id="ed" cols="30" rows="5" required><?php echo $row['description']?></textarea></td>
+    </tr>
+</table>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" onclick="editEquipment()" class="modal-action modal-close waves-effect waves-green btn-flat ">UPDATE</a>
+        </div>
+      
       </div>
       </div>
     
@@ -234,8 +301,9 @@ $obj->display_equipment();
         <footer></footer>
 
         <script src="jquery-2.1.3.js"></script>
-        <script src="js/equipment_page.js"></script>
+
         <script src="js/materialize.min.js"></script>
+        <script src="js/equipment_page.js"></script>
     </body>
 
     </html>

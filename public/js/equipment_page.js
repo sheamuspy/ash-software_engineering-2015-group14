@@ -1,5 +1,13 @@
+/**
+ * author: Rahila Sule
+ * description: A php file containing all equipment methods. This is an ajax page that makes requests to server
+ */
+<script>
+
 $(document).ready(function (){
     $(".button-collapse").sideNav();
+
+    $('.modal-trigger').leanModal();
 });
 
 var curId;
@@ -20,6 +28,7 @@ var curId;
 				deleteE.hidden=true;
 				edit.hidden=true;
             }
+
             function loadViewEquip(eid){
                 $("#contentSpace").load("view.php?id=" + eid);
 				curId=eid;
@@ -27,6 +36,7 @@ var curId;
 				deleteE.hidden=false;
 				edit.hidden=false;
             }
+
             function loadEditEquipmentForm(){
                 $("#contentSpace").load("edit_equipment.php?eid="+curId);
             }
@@ -39,7 +49,7 @@ var curId;
 				var datePurchased=dp.value;
 				var supplierId=sid.value;
 				var description=ed.value;
-				var objResult= sendRequest("http://localhost/software_engineering/EIMS/application/controllers/equipment_methods.php?cmd=2&eid="+curId+"&en="+eName+"&sn="+serialNum+"&in="+inventNumber+"&lid="+labId+"&dp="+datePurchased+"&sid="+supplierId+"&ed="+description+"&uid="+userId);
+				var objResult= sendRequest("http://localhost/softwareEngineering/Groupwork/ash-software_engineering-2015-group14/application/controllers/equipment_methods.php?cmd=2&eid="+curId+"&en="+eName+"&sn="+serialNum+"&in="+inventNumber+"&lid="+labId+"&dp="+datePurchased+"&sid="+supplierId+"&ed="+description+"&uid="+userId);
 				
 				if(objResult.result==1){
 					addTransaction(curId,"Edited");
@@ -58,15 +68,15 @@ var curId;
 				var datePurchased=dp.value;
 				var supplierId=sid.value;
 				var description=ed.value;
-				var objResult= sendRequest("http://localhost/software_engineering/EIMS/application/controllers/equipment_methods.php?cmd=1&en="+eName+"&sn="+serialNum+"&in="+inventNumber+"&lid="+labId+"&dp="+datePurchased+"&sid="+supplierId+"&ed="+description+"&uid="+userId);
+				var objResult= sendRequest("http://localhost/softwareEngineering/Groupwork/ash-software_engineering-2015-group14/application/controllers/equipment_methods.php?cmd=1&en="+eName+"&sn="+serialNum+"&in="+inventNumber+"&lid="+labId+"&dp="+datePurchased+"&sid="+supplierId+"&ed="+description+"&uid="+userId);
 				if(objResult.result==1){
-					var lastResult = sendRequest("equipment_methods.php?cmd=5");
-					var eid = lastResult.response;
-					addTransaction(eid,"Added");
+					// var lastResult = sendRequest("equipment_methods.php?cmd=1");
+					// var eid = lastResult.response;
+					// addTransaction(eid,"Added");
 					location.reload();
 					divStatus.innerHTML = objResult.message;
 					
-				}else{
+				} else {
 					divStatus.innerHTML = objResult.message;
 				}
 				
@@ -74,6 +84,11 @@ var curId;
 			
 			function addTransaction(eid, pur){
 				var objResult= sendRequest("http://localhost/software_engineering/EIMS/application/controllers/transaction_methods.php?cmd=4&uid="+userId+"&eid="+eid+"&pur="+pur);
+				if(objResult.result==1){
+					location.reload();
+					divStatus.innerHTML = objResult.message;
+					
+				}
 			}
 			
             function search(){
@@ -119,3 +134,4 @@ var curId;
 				deleteE.hidden=true;
 				edit.hidden=true;
 			 }
+</script>
