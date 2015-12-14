@@ -9,7 +9,8 @@
 //2: edit equipment
 //3: delete equipment
 //4: search for equipment
-//5:get last equipment
+//5: get last equipment
+//6: checkout equipment
 
 	if (!isset($_REQUEST['cmd'])) {
 	    exit();
@@ -39,11 +40,15 @@
 			get_last();
 			break;
 
+		case 6:
+			checkout_equipment();
+			break;
+
 		default:
 			break;
 	}
 	
-	//php function that adds equipment
+	//ajax request that adds equipment
 	function add_equipment()
 	{
 	    if (isset($_REQUEST['en'])) {
@@ -74,7 +79,7 @@
 		}	
 	}
 
-	//php function that edits equipment details
+	//ajax request that edits equipment details
 	function edit_equipment() 
 	{
 		if (isset($_REQUEST['en'])) {
@@ -121,6 +126,7 @@
 	}
 	*/
 
+	//ajax request that searches forequipment 
 	function search_equipment()
 	{
 	if (!isset($_REQUEST['st'])) {
@@ -148,6 +154,7 @@
 	echo '], "message":"'.$count.' results found with \"'.$search_text.'\"","numRows":'.$count.'}';
     }
 
+    //ajax request gets last equipment
 	function get_last() 
 	{
 		include_once("../models/equipment.php");
@@ -159,5 +166,34 @@
 			return;
 		} else {
 			echo '{"result":1, "response":'.$response['equipment_id'].'}';
+		}
+    }
+
+    //ajax request that checks out equipment
+    function checkout_equipment()
+    {
+    	if (isset($_REQUEST['eid'])) {
+			include_once("../models/equipment.php");
+			$obj = new equipment();
+			if (!$obj->connect()) {
+				echo '{"result":2,"message":"Sorry we could not connect to the database."}';
+			}
+			$eid =$_REQUEST['eid'];
+			$user_id = $_REQUEST['uid'];
+			
+			//first sets equipment as unavailable
+			$obj->set_available($eid);
+			if($obj->set_available($eid)) {
+				//if successfully sets equipment as unavailable then checkout equipment
+				if(!$obj->checkout_equipment($user_id, $eid)) {
+				echo '{"result":0,"message":"Sorry we could not execute the query."}';    
+				} else {				
+				echo '{"result":1,"message":"Equipment successfully checked out."}';
+				}   
+			} else {				
+				echo '{"result":1,"message":"error"}';
+			}
+
+				
 		}
     }

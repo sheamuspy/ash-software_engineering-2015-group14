@@ -2,9 +2,7 @@
  * author: Rahila Sule
  * description: A php file containing all equipment methods. This is an ajax page that makes requests to server
  */
-<script>
-
-$(document).ready(function (){
+ $(document).ready(function (){
     $(".button-collapse").sideNav();
 
     $('.modal-trigger').leanModal();
@@ -35,12 +33,14 @@ var curId;
 				exit.hidden=false;
 				deleteE.hidden=false;
 				edit.hidden=false;
+				checkout.hidden=false;
             }
 
             function loadEditEquipmentForm(){
                 $("#contentSpace").load("edit_equipment.php?eid="+curId);
             }
-			
+
+			//sends request using url to call edit equipment method in ajax page
 			function editEquipment(){
 				var eName=en.value;
 				var serialNum=sn.value;
@@ -60,6 +60,7 @@ var curId;
 				}
 			}
 			
+			//sends request using url to call add equipment method in ajax page
 			function addEquipment(){
 				var eName=en.value;
 				var serialNum=sn.value;
@@ -69,6 +70,24 @@ var curId;
 				var supplierId=sid.value;
 				var description=ed.value;
 				var objResult= sendRequest("http://localhost/softwareEngineering/Groupwork/ash-software_engineering-2015-group14/application/controllers/equipment_methods.php?cmd=1&en="+eName+"&sn="+serialNum+"&in="+inventNumber+"&lid="+labId+"&dp="+datePurchased+"&sid="+supplierId+"&ed="+description+"&uid="+userId);
+				if(objResult.result==1){
+					// var lastResult = sendRequest("equipment_methods.php?cmd=1");
+					// var eid = lastResult.response;
+					// addTransaction(eid,"Added");
+					location.reload();
+					divStatus.innerHTML = objResult.message;
+					
+				} else {
+					divStatus.innerHTML = objResult.message;
+				}
+				
+			}
+
+			//sends request using url to call checkout equipment method in ajax page
+			function checkoutEquipment(){
+				var ei=eid.value;
+				var ui=uid.value;
+				var objResult= sendRequest("http://localhost/softwareEngineering/Groupwork/ash-software_engineering-2015-group14/application/controllers/equipment_methods.php?cmd=6&eid="+ei+"&uid="+ui);
 				if(objResult.result==1){
 					// var lastResult = sendRequest("equipment_methods.php?cmd=1");
 					// var eid = lastResult.response;
@@ -134,4 +153,3 @@ var curId;
 				deleteE.hidden=true;
 				edit.hidden=true;
 			 }
-</script>

@@ -20,8 +20,8 @@
         <script>
             var userId = <?php echo $_SESSION['USER_ID']; ?>;
         </script>
-        <script src="js/equipment_page.js"> </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/equipment_page.js"> </script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     </head>
@@ -88,7 +88,7 @@
 
         <!-- This is the main section of the page -->
         <main>
-<!--            <div class="container">-->
+   <!--  <div class="container">-->
                 <div class="row">
                     <div class="col s12 m9 l12">
 
@@ -98,14 +98,15 @@
                                 <div style="float:left">
                                    <!-- <span id="change" class="menuitem" onclick="loadAddEquipmentForm()">Add Equipment</span> -->
                                     <span class="menuitem modal-trigger" href="#editmodal" id="edit" hidden="true">Edit</span>
+                                    <span class="menuitem modal-trigger" href="#checkoutmodal" id="checkout" hidden="true">Checkout</span>
                                     <span class="menuitem" onclick="deleteEquip()" id="deleteE" hidden="true">Delete</span>
-                                    <span class="menuitem" id="exit" onclick="exitView()" hidden="true">Exit</span>
+                                    <span class="menuitem" id="exit" onclick="exitView()" hidden="true">Exit</span>                               
                                 </div>
                                 
                                 <div align="right">
                                      <!-- Modal Trigger -->
-                               <button class="waves-effect waves-light btn modal-trigger" href="#addmodal" aligh="right">Add Equipment</button>
-                                    <input type="text" placeholder="Search" id="txtSearch" />
+                                    <button class="modal-trigger waves-effect waves-light btn " href="#addmodal" aligh="right">Add Equipment</button>
+                                    <input type="text" placeholder="Search" id="txtSearch">
                                     <span id="search" class="menuitem" onclick="search()">search</span>
                                 </div>
                                 
@@ -253,6 +254,33 @@
       
       </div>
       </div>
+
+      <!-- Modal Structure -->
+      <div id="checkoutmodal" class="modal modal-fixed-footer">
+        <!-- Modal content -->
+        <div class="modal-content">
+        
+        <h4>Checkout Equipment</h4>
+         <tr>
+            <td>User ID:</td><td> <input type="text" id="uid" required></td>
+        </tr>
+        <tr>
+            <td>Equipment ID: </td><td><input type="text"  id="eid" required></td>
+        </tr>
+        <tr>
+            <td>Checkout date: </td><td><input type="date"  id="ed" required></td>
+        </tr>
+
+        <table>
+        </table>
+
+        </div>
+        <div class="modal-footer">
+            <a href="#!" onclick="checkoutEquipment()" class="modal-action modal-close waves-effect waves-green btn-flat ">CHECKOUT</a>
+        </div>
+      
+      </div>
+      </div>
     
     <div id="divStatus" class="status">
         status message
@@ -271,6 +299,7 @@ $obj->display_equipment();
 		<td data-field='name'>Equipment Name</td>
 		<td data-field='name'>Lab</td>
 		<td data-field='date'>Date Purchased</td>
+        <td data-field='available'>Available</td>
 	    </tr>";
 
     $count=0;
@@ -286,7 +315,8 @@ $obj->display_equipment();
 		echo "<tr onclick='loadViewEquip($row[equipment_id])' class=$color style='cursor:pointer'><td>$row[serial_number]</td>";
 		echo "<td>$row[equipment_name]</td>";
 		echo "<td>$row[lab_id]</td>";
-		echo "<td>$row[date_purchased]</td></tr>";
+		echo "<td>$row[date_purchased]</td>";
+        echo "<td>$row[available]</td></tr>";
 	}
 				
 ?>

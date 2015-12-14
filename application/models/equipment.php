@@ -40,9 +40,25 @@ class equipment extends adb
 		return $this->query($str_query);
 	}
 
+	//checks out an equipment by recording details of who borrowed, what was borrowed and when it was borrowed
+	function checkout_equipment($uid, $eid)
+	{
+		$str_query = "INSERT INTO webtech_project_checkout SET user_id = $uid, equipment_id = $eid,
+			checkout_date = CURDATE(), checkin_date =''";
+		return $this->query($str_query);
+	}
+
+	//this is a helper method for the checkout equipment method above. It sets equipment as unavailable
+	function set_available($eid)
+	{
+		$str_query = "UPDATE webtech_project_equipment SET available = 0
+			WHERE webtech_project_equipment.equipment_id = $eid";
+		return $this->query($str_query);
+	}
+
 	function display_equipment() 
 	{
-		$str_query = "SELECT equipment_id, serial_number, equipment_name, lab_id, date_purchased
+		$str_query = "SELECT equipment_id, serial_number, equipment_name, lab_id, date_purchased, available
 		    FROM webtech_project_equipment"; 
 		return $this->query($str_query);
 	}
@@ -83,4 +99,5 @@ class equipment extends adb
 		    WHERE webtech_project_equipment.equipment_name LIKE'$equipment%'";
 	return $this->query($str_query);
     }
+
 }
