@@ -14,6 +14,6 @@ class CheckoutTest extends PHPUnit_Framework_TestCase{
     public function testGetCheckoutDetails() {
         include '../application/models/checkout.php';
         $obj = new checkout();
-        $this -> assertTrue($obj->getCheckoutDetails());
+        $this -> assertTrue($obj->get_checkout_details());
     }
 }
