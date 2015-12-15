@@ -125,7 +125,7 @@ function get_history(){
             $row_indicator = 0;
         }
         $table_row=$table_row."<tr class=$class onclick='veiwTransaction({$row['CHECKOUT_ID']})' style='cursor:pointer'>";
-        $table_row=$table_row."<td>{$row['USER_NAME']}</td><td>{$row['EQUIPMENT_NAME']}</td><td>{$row['CHECKOUT_DATE']}</td><td>{$row['CHECKIN_DATE']}</td>";
+        $table_row=$table_row."<td>{$row['user_name']}</td><td>{$row['equipment_name']}</td><td>{$row['CHECKOUT_DATE']}</td><td>{$row['CHECKIN_DATE']}</td>";
         $table_row=$table_row."</tr>";
         $count++;
     }
