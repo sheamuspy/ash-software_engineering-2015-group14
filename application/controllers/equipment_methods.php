@@ -85,6 +85,7 @@
 		if (isset($_REQUEST['en'])) {
 			include_once("../models/equipment.php");
 			$obj = new equipment();
+			//display error message if unable to connect to database
 			if (!$obj->connect()) {
 				echo '{"result":0,"message":"Sorry we could not connect to the database."}';
 			}

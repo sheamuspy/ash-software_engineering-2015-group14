@@ -10,16 +10,19 @@
 
 var curId;
 			
-//			function loadEquip(){
-//				$("#tableExample").load("equip.php");
-//			}
+			/*function loadEquip(){
+			*	$("#tableExample").load("equip.php");
+			*  } 
+			*/
 
+			//used to send ajax requests
 			function sendRequest(theURL){
 				var obj = jQuery.ajax({url:theURL, async:false});
 				var response = jQuery.parseJSON(obj.responseText);
 				return response;
 			}
 			
+			//used to load the add equipment form. This is not being used
             function loadAddEquipmentForm(){
                 $("#contentSpace").load("add_equipment.php");
 				exit.hidden=false;
@@ -27,6 +30,7 @@ var curId;
 				edit.hidden=true;
             }
 
+            //used to load equipment view. That is, when an equipment is clicked on
             function loadViewEquip(eid){
                 $("#contentSpace").load("view.php?id=" + eid);
 				curId=eid;
@@ -36,6 +40,7 @@ var curId;
 				checkout.hidden=false;
             }
 
+            //used to load equipment editing form. This is not being used
             function loadEditEquipmentForm(){
                 $("#contentSpace").load("edit_equipment.php?eid="+curId);
             }
@@ -101,6 +106,7 @@ var curId;
 				
 			}
 			
+			//for adding a transaction. This method is not being used
 			function addTransaction(eid, pur){
 				var objResult= sendRequest("http://localhost/software_engineering/EIMS/application/controllers/transaction_methods.php?cmd=4&uid="+userId+"&eid="+eid+"&pur="+pur);
 				if(objResult.result==1){
@@ -110,6 +116,7 @@ var curId;
 				}
 			}
 			
+			//for searching for an equipment
             function search(){
 				var search_text=txtSearch.value;
 				var strUrl="http://localhost/software_engineering/EIMS/application/controllers/equipment_methods.php?cmd=4&st="+search_text;
@@ -138,6 +145,7 @@ var curId;
 				}
 			}
 			
+			//for deleting an equipment. Currently no equipment can be deleted
             function deleteEquip(){
 				var objResult= sendRequest("http://localhost/software_engineering/EIMS/application/controllers/equipment_methods.php?cmd=3&eid="+curId);
 				if(objResult.result==1){
@@ -147,6 +155,7 @@ var curId;
 				}
             }
 			
+			//for exiting an equipment view
 			function exitView(){
 				contentSpace.innerHTML="";
 				exit.hidden=true;
