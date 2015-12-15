@@ -1,3 +1,10 @@
+$(document).ready(function (){
+    $(".button-collapse").sideNav();
+
+    getHistory();
+
+});
+
 function sendRequest(theURL) {
     var obj = jQuery.ajax({
         url: theURL,
@@ -12,7 +19,7 @@ function searchActivities() {
     exitView();
     var search = searchBy.value;
     var txtToSearch = txtSearch.value;
-    var objResult = sendRequest("http://localhost/software_engineering/EIMS/application/controllers/transaction_methods.php?cmd=3&sb=" + search + "&st=" + txtToSearch);
+    var objResult = sendRequest("http://localhost/software_engineering/EIMS/application/controllers/history_methods.php?cmd=3&sb=" + search + "&st=" + txtToSearch);
     $("#table").html(objResult.tabrow);
     $("#divStatus").html(objResult.message);
     divStatus.style.backgroundColor = "green";
@@ -36,7 +43,7 @@ function displayActivities() {
 }
 
 function getHistory() {
-    var objResult = sendRequest("http://localhost/software_engineering/EIMS/application/controllers/transaction_methods.php?cmd=1");
+    var objResult = sendRequest("http://localhost/software_engineering/EIMS/application/controllers/history_methods.php?cmd=1");
 
     $("#table").html(objResult.tabrow);
 }
@@ -44,7 +51,7 @@ function getHistory() {
 function veiwTransaction(id) {
 
 
-    $("#contentSpace").load("http://localhost/software_engineering/EIMS/application/controllers/transaction_methods.php?cmd=2&id=" + id);
+    $("#contentSpace").load("http://localhost/software_engineering/EIMS/application/controllers/history_methods.php?cmd=2&id=" + id);
     pm_exit.hidden = false;
 }
 
