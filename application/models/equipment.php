@@ -15,9 +15,9 @@ class equipment extends adb
 	//adds an equipment to database	
 	function add_equipment($sn, $in, $name, $lid, $dp, $sid, $desc)
 	{
-	    $str_query = "INSERT INTO webtech_project_equipment SET serial_number='$sn', 
-		    inventory_number='$in', equipment_name='$name', lab_id=$lid, date_purchased='$dp',
-			supplier_id=$sid, description='$desc'";
+	    $str_query = "INSERT INTO webtech_project_equipment SET serial_number ='$sn', 
+		    inventory_number = '$in', equipment_name = '$name', lab_id = $lid, 
+		    date_purchased = '$dp', supplier_id = $sid, description = '$desc'";
 		return $this->query($str_query);
 	}
 
@@ -30,17 +30,18 @@ class equipment extends adb
 	}
 	*/
 
-	//edits equipment in database
+	//query that edits equipment details in database
 	function edit_equipment($eid, $sn, $in, $name, $lid, $dp, $sid, $desc)
 	{
 		//query that updates an equipment in database
 		$str_query = "UPDATE webtech_project_equipment SET serial_number ='$sn',
 		    inventory_number = '$in', equipment_name = '$name', lab_id = $lid,
-			date_purchased = '$dp', supplier_id = $sid, description = '$desc' WHERE webtech_project_equipment.equipment_id = $eid";
+			date_purchased = '$dp', supplier_id = $sid, description = '$desc' 
+			WHERE webtech_project_equipment.equipment_id = $eid";
 		return $this->query($str_query);
 	}
 
-	//checks out an equipment by recording details of who borrowed, what was borrowed and when it was borrowed
+	//query that checks out an equipment by recording details of who borrowed, what was borrowed and when it was borrowed
 	function checkout_equipment($uid, $eid)
 	{
 		$str_query = "INSERT INTO webtech_project_checkout SET user_id = $uid, equipment_id = $eid,
@@ -56,13 +57,18 @@ class equipment extends adb
 		return $this->query($str_query);
 	}
 
+	//this is a function that displays details of an equipment
 	function display_equipment() 
 	{
-		$str_query = "SELECT equipment_id, serial_number, equipment_name, lab_id, date_purchased, available
-		    FROM webtech_project_equipment"; 
+		$str_query = "SELECT equipment_id, serial_number, equipment_name, lab_id, date_purchased, 
+			available FROM webtech_project_equipment"; 
 		return $this->query($str_query);
 	}
 
+	/*this is a function that enables an equipment to be viewed. It simply selects
+	* all details about an equipment and also selects details about the lab and supplier of 
+	* the equipment
+	*/
     function view_equipment($eid) 
     {
         $str_query = "SELECT * FROM webtech_project_equipment INNER JOIN webtech_project_labs
@@ -72,6 +78,7 @@ class equipment extends adb
         return $this->query($str_query);
     }
 
+    //this is a helper function that queries database for lab name
     function display_labname($lid) 
     {
         $str_query = "SELECT lab_name from webtech_project_labs AS wl LEFT JOIN
@@ -79,6 +86,9 @@ class equipment extends adb
         return $this->query($str_query);
     }
 
+    /*this is a function that selects equipment and enables them to be arranged in order
+    *of most recently added equipment
+    */
 	function get_most_recently_added()
 	{
 	    $str_query = "SELECT equipment_id FROM webtech_project_equipment
@@ -91,6 +101,9 @@ class equipment extends adb
 				}
 	}
 
+	/*this is a function that queries databse for an equipment and its details provided some
+	* or all of the equipment name
+	*/
     function search_equipment($equipment)
     {
         $str_query = "SELECT * FROM webtech_project_equipment INNER JOIN webtech_project_supplier ON 
