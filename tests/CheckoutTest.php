@@ -19,7 +19,7 @@
  */
 
 /**
- * This is the Checkout file
+ * This is the CheckoutTest file
  *
  * This file tests the methods of the checkout class file
  *
