@@ -104,7 +104,13 @@ function add_transaction(){
 
 }
 
-function get_history(){
+/**
+ * This method retrieves the history of all checkout details.
+ *
+ * @return JSONString Contains the result of the function.
+ */
+function get_history()
+{
     include_once("../models/checkout.php");
 
     $obj = new checkout();
@@ -116,14 +122,16 @@ function get_history(){
     $row;
     $row_indicator = 0;
     $count=0;
-    while($row = $obj->fetch()){
-        if($row_indicator==0){
+
+    while($row = $obj->fetch()) {
+        if($row_indicator==0) {
             $class = 'row1';
             $row_indicator = 1;
-        } else{
+        } else {
             $class = 'row2';
             $row_indicator = 0;
         }
+
         $table_row=$table_row."<tr class=$class onclick='veiwTransaction({$row['CHECKOUT_ID']})' style='cursor:pointer'>";
         $table_row=$table_row."<td>{$row['user_name']}</td><td>{$row['equipment_name']}</td><td>{$row['CHECKOUT_DATE']}</td><td>{$row['CHECKIN_DATE']}</td>";
         $table_row=$table_row."</tr>";

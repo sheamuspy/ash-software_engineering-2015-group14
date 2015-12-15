@@ -1,4 +1,4 @@
-$(document).ready(function (){
+$(document).ready(function () {
     $(".button-collapse").sideNav();
 
     getHistory();
@@ -42,6 +42,9 @@ function displayActivities() {
     }
 }
 
+/**
+ * This function populates the history table.
+ */
 function getHistory() {
     var objResult = sendRequest("http://localhost/software_engineering/EIMS/application/controllers/history_methods.php?cmd=1");
 
