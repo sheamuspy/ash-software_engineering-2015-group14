@@ -5,79 +5,110 @@
 	}
 
 ?>
-<html>
-	<head>
-		<title>History</title>
-		<link rel="stylesheet" href="css/style.css">
-		<script src="jquery-2.1.3.js"></script>
+    <!DOCTYPE html>
+    <html lang="en" style="padding-right: 0px;">
 
-		<script src="js/history_page.js"></script>
-	</head>
-	<body>
-		<table align='center'>
-			<tr>
-				<td colspan="2" id="pageheader">
-					<b>Ashesi Engineering Inventory</b>
-				</td>
-			</tr>
-			<tr>
-				<td id="mainnav">
-					<div><?php echo $_SESSION['USERNAME']?><br> logged in</div>
-					<a href="index.php" style="text-decoration:none"><div class="menuitem">Home</div></a>
-					<a href="equipment_page.php" style="text-decoration:none"><div class="menuitem">Equipment</div></a>
-					<a href="labpage.php" style="text-decoration: none;"><div class="menuitem">Labs</div></a>
-					<a href="suppliers_page.php" style="text-decoration:none"><div class="menuitem">Supplier</div></a>
-					<a href="history.php" style="text-decoration: none;"><div class="menuitem"><b>History</b></div></a>
-					<a href="logout.php" style="text-decoration: none;"><div class="menuitem">Logout</div></a>
-				</td>
-				<td id="content">
-					<div id="divPageMenu">
-					<div style="float:left">
-					<span class="menuitem" id="pm_exit" hidden="true" onclick="exitView()">Exit</span>
-					</div>
-					<div align="right">
-						
-						<input type="text" id="txtSearch" placeholder="Search"/>
-						<span class="menuitem" ><select id="searchBy"><option value="0">--Search by--</option>
-														<option value="1">Equipment</option>
-														<option value="2">Date</option>
-														<option value="3">User name</option>
-														</select>
-						</span>
-						<span class="menuitem" onclick="searchActivities()">search</span>
-							</div>
-					</div>
-					<div id="divStatus" class="status">
-						status message
-					</div>
-					<div id="divContent">
-						<div id="contentSpace">
-						</div>
-						<table id="table" class="reportTable" width="100%">
-						<!--	<tr class="header">
-								<td>column1</td>
-								<td>column2</td>
-								<td>column3</td>
-								<td>column4</td>
-							</tr>
-							<tr class="row1">
-								<td>data example</td>
-								<td>123</td>
-								<td>01/01/2014</td>
-								<td>data</td>
-							</tr>
-							<tr class="row2">
-								<td>data example</td>
-								<td>123</td>
-								<td>01/01/2014</td>
-								<td>data</td>
-							</tr>
-					</div>
-				</td>
-			</tr>-->
-			<?php
-				include_once("../application/controllers/transaction_methods.php");
-			?>
-		</table>
-	</body>
-</html>	
+    <head>
+        <title>Equipment</title>
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/style.css">
+
+        <script>
+            var userId = <?php echo $_SESSION['USER_ID']; ?>;
+        </script>
+
+    </head>
+
+    <body>
+        <!-- This is the page header -->
+        <header>
+
+            <nav class="top-nav" id="pageheader">
+                <div class="container">
+                    <div class="nav-wrapper">
+                        <a class="page-title">Ashesi Engineering Inventory</a>
+                    </div>
+                </div>
+            </nav>
+
+            <ul id="mainnav" class="side-nav fixed " style="width: 240px;">
+                <li id="logo">
+                    <img class="responsive-img circle center" src="images/logo.png">
+                </li>
+                <li>
+                    <a href="#">
+                        <?php echo $_SESSION['USERNAME']?>
+                            logged in</a>
+                </li>
+                <li>
+                    <a href="index.php">
+                        <div>Home</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="equipment_page.php">
+                        <div>Equipment</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="labpage.php">
+                        <div>Labs</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="suppliers_page.php">
+                        <div>Supplier</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.php">
+                        <div><b>History</b></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="logout.php">
+                        <div>Logout</div>
+                    </a>
+                </li>
+            </ul>
+
+        </header>
+
+        <!-- This is the main section of the page -->
+        <main>
+            <!--            <div class="container">-->
+            <div class="row">
+                <div class="col s12 m9 l12">
+
+
+                    <div id="content" class="card-panel grey lighten-2">
+                        <div id="divPageMenu">
+<!--
+                            <div align="right">
+                                <input type="text" placeholder="Search" id="txtSearch" />
+                                <span id="search" class="menuitem" onclick="search()">search</span>
+                            </div>
+-->
+                        </div>
+                        <div id="divStatus" class="status">
+                            status message
+                        </div>
+                        <div id="divContent">
+                            <div id="contentSpace"></div>
+                            <table id="table" class="reportTable bordered" width="100%">
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <footer></footer>
+
+        <script src="jquery-2.1.3.js"></script>
+        <script src="js/materialize.min.js"></script>
+        <script src="js/history_page.js"></script>
+    </body>
+
+    </html>
