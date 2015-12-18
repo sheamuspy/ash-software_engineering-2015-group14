@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Add Equipment</title>
+		<title>Edit Equipment</title>
 		<link rel="stylesheet" href="css/style.css">
 		<script>
 			

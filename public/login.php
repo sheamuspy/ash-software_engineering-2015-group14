@@ -1,91 +1,61 @@
 <?php
-	if(isset($_REQUEST['loginUsername'])){
-		session_start();
-		
-		include_once("../application/models/users.php");
-		$u_name = $_REQUEST['loginUsername'];
-		$p_word = $_REQUEST['loginPassword'];	
-		$obj = new users();
-		$row = $obj->user_password_validation($u_name,$p_word);
-		if(!$row){
-			echo "wrong credentials";
-		}else{
-			$_SESSION['USER_ID'] = $row['user_id'];
-			$_SESSION['USERNAME'] = $row['user_name'];
-			$_SESSION['PASSWORD'] = $_REQUEST['password'];
-			header("location:index.php");
-		}
+if (isset($_REQUEST['loginUsername'])) {
+    session_start();
+    include_once("../application/models/users.php");
+    $u_name = $_REQUEST['loginUsername'];
+	$p_word = $_REQUEST['loginPassword'];
+	$obj = new users();
+	$row = $obj->user_password_validation($u_name,$p_word);
+	if (!$row) {
+		echo "<div class='center'>wrong credentials</div>";
+	} else {
+		$_SESSION['USER_ID'] = $row['user_id'];
+		$_SESSION['USERNAME'] = $row['user_name'];
+		$_SESSION['PASSWORD'] = $_REQUEST['password'];
+		header("location:index.php");
 	}
+}
 ?>
+<!DOCTYPE html>
 <html>
-	<head>
-	<script src="jquery-2.1.3.js"></script>
-	<script>
-	
-		function sendRequest(requestURL){
-			var obj = $.ajax({url:requestURL, async:false});
-			var response =$.parseJSON(obj.responseText);
-			return response;
-			
-		}
-		
-		function login(username, password){
-			var response = sendRequest("user_methods.php?cmd=1&username="+username+"&password="+password);
-			divContent.innerHTML=response.message;
-			
-		
-		}
-		
-		function validate(){
-			var valid = validatePassword();
-			if(valid){
-				var response = login(loginUsername.value, loginPassword.value);
-				
-			}
-			
 
-		}
-		
-		function validatePassword(){
-			var password = loginPassword.value;
-			var username = loginUsername.value;
-			var pErr =false;
-			var uErr=false;
-			if(password.length<1){
-				loginPassword.style.backgroundColor="red";
-				pErr=true;
-			}
-			if(username.length<1){
-				loginUsername.style.backgroundColor="red";
-				uErr=true;
-			}
-			if(pErr==false&&uErr==false){
-				return true;
-			}
-			return false;
-			
-			
-		}
-	</script>
-		<link rel="stylesheet" href="css/style.css">
-	</head>
-	<body>
-	
+<head>
+    <script src="jquery-2.1.3.js"></script>
+    <script src="js/login.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/materialize.min.css" />
+</head>
 
-		<form method="POST" action="login.php">
-			<table align="center">
-				<tr>
-					<td>Username</td><td><input type="text" placeholder="Username" name="loginUsername" required></td>
-				</tr>
-				<tr>
-					<td>Password</td><td><input type="password" placeholder="Password" name="loginPassword" required></td>
-				</tr>
-				<tr>
-				
-					<td></td><td><button type="submit">Login</button></td>
-				</tr>
-			</table>
-		</form>
-	</body>
+<body>
+    <div class="row">
+        <div class="col s4 offset-s4">
+            <form method="POST" action="login.php" class="card-panel">
+                <div class="row center">
+                    <div class="col s4 offset-s1 valign-wrapper">
+                        <h5 class="valign right-align">Username</h5>
+                    </div>
+                    <div class="col s6">
+                        <input type="text" placeholder="Username" name="loginUsername" required>
+                    </div>
+                </div>
+                <div class="row center">
+                    <div class="col s4 offset-s1 valign-wrapper">
+                        <h5 class="valign right-align">Password</h5>
+                    </div>
+                    <div class="col s6">
+                        <input type="password" placeholder="Password" name="loginPassword" required>
+                    </div>
+                </div>
+                <div class="row center">
+                    <button class="btn waves-effect waves-light" type="submit">Login</button>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+
+</body>
 
 </html>
