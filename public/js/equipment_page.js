@@ -1,36 +1,51 @@
-$(document).ready(function (){
+/**
+ * author: Rahila Sule
+ * description: A php file containing all equipment methods. This is an ajax page that makes requests to server
+ */
+ $(document).ready(function (){
     $(".button-collapse").sideNav();
+
+    $('.modal-trigger').leanModal();
 });
 
 var curId;
 			
-//			function loadEquip(){
-//				$("#tableExample").load("equip.php");
-//			}
+			/*function loadEquip(){
+			*	$("#tableExample").load("equip.php");
+			*  }
+			*/
 
+			//used to send ajax requests
 			function sendRequest(theURL){
 				var obj = jQuery.ajax({url:theURL, async:false});
 				var response = jQuery.parseJSON(obj.responseText);
 				return response;
 			}
 			
+			//used to load the add equipment form. This is not being used
             function loadAddEquipmentForm(){
                 $("#contentSpace").load("add_equipment.php");
 				exit.hidden=false;
 				deleteE.hidden=true;
 				edit.hidden=true;
             }
+
+            //used to load equipment view. That is, when an equipment is clicked on
             function loadViewEquip(eid){
                 $("#contentSpace").load("view.php?id=" + eid);
 				curId=eid;
 				exit.hidden=false;
 				deleteE.hidden=false;
 				edit.hidden=false;
+				checkout.hidden=false;
             }
+
+            //used to load equipment editing form. This is not being used
             function loadEditEquipmentForm(){
                 $("#contentSpace").load("edit_equipment.php?eid="+curId);
             }
-			
+
+			//sends request using url to call edit equipment method in ajax page
 			function editEquipment(){
 				var eName=en.value;
 				var serialNum=sn.value;
@@ -39,7 +54,7 @@ var curId;
 				var datePurchased=dp.value;
 				var supplierId=sid.value;
 				var description=ed.value;
-				var objResult= sendRequest("http://localhost/software_engineering/EIMS/application/controllers/equipment_methods.php?cmd=2&eid="+curId+"&en="+eName+"&sn="+serialNum+"&in="+inventNumber+"&lid="+labId+"&dp="+datePurchased+"&sid="+supplierId+"&ed="+description+"&uid="+userId);
+				var objResult= sendRequest("http://localhost/softwareEngineering/Groupwork/ash-software_engineering-2015-group14/application/controllers/equipment_methods.php?cmd=2&eid="+curId+"&en="+eName+"&sn="+serialNum+"&in="+inventNumber+"&lid="+labId+"&dp="+datePurchased+"&sid="+supplierId+"&ed="+description+"&uid="+userId);
 				
 				if(objResult.result==1){
 					addTransaction(curId,"Edited");
@@ -50,6 +65,7 @@ var curId;
 				}
 			}
 			
+			//sends request using url to call add equipment method in ajax page
 			function addEquipment(){
 				var eName=en.value;
 				var serialNum=sn.value;
@@ -58,24 +74,49 @@ var curId;
 				var datePurchased=dp.value;
 				var supplierId=sid.value;
 				var description=ed.value;
-				var objResult= sendRequest("http://localhost/software_engineering/EIMS/application/controllers/equipment_methods.php?cmd=1&en="+eName+"&sn="+serialNum+"&in="+inventNumber+"&lid="+labId+"&dp="+datePurchased+"&sid="+supplierId+"&ed="+description+"&uid="+userId);
+				var objResult= sendRequest("http://localhost/softwareEngineering/Groupwork/ash-software_engineering-2015-group14/application/controllers/equipment_methods.php?cmd=1&en="+eName+"&sn="+serialNum+"&in="+inventNumber+"&lid="+labId+"&dp="+datePurchased+"&sid="+supplierId+"&ed="+description+"&uid="+userId);
 				if(objResult.result==1){
-					var lastResult = sendRequest("equipment_methods.php?cmd=5");
-					var eid = lastResult.response;
-					addTransaction(eid,"Added");
+					// var lastResult = sendRequest("equipment_methods.php?cmd=1");
+					// var eid = lastResult.response;
+					// addTransaction(eid,"Added");
 					location.reload();
 					divStatus.innerHTML = objResult.message;
 					
-				}else{
+				} else {
+					divStatus.innerHTML = objResult.message;
+				}
+
+			}
+
+			//sends request using url to call checkout equipment method in ajax page
+			function checkoutEquipment(){
+				var ei=eid.value;
+				var ui=uid.value;
+				var objResult= sendRequest("http://localhost/softwareEngineering/Groupwork/ash-software_engineering-2015-group14/application/controllers/equipment_methods.php?cmd=6&eid="+ei+"&uid="+ui);
+				if(objResult.result==1){
+					// var lastResult = sendRequest("equipment_methods.php?cmd=1");
+					// var eid = lastResult.response;
+					// addTransaction(eid,"Added");
+					location.reload();
+					divStatus.innerHTML = objResult.message;
+
+				} else {
 					divStatus.innerHTML = objResult.message;
 				}
 				
 			}
 			
+			//for adding a transaction. This method is not being used
 			function addTransaction(eid, pur){
 				var objResult= sendRequest("http://localhost/software_engineering/EIMS/application/controllers/transaction_methods.php?cmd=4&uid="+userId+"&eid="+eid+"&pur="+pur);
+				if(objResult.result==1){
+					location.reload();
+					divStatus.innerHTML = objResult.message;
+
+				}
 			}
 			
+			//for searching for an equipment
             function search(){
 				var search_text=txtSearch.value;
 				var strUrl="http://localhost/software_engineering/EIMS/application/controllers/equipment_methods.php?cmd=4&st="+search_text;
@@ -104,6 +145,7 @@ var curId;
 				}
 			}
 			
+			//for deleting an equipment. Currently no equipment can be deleted
             function deleteEquip(){
 				var objResult= sendRequest("http://localhost/software_engineering/EIMS/application/controllers/equipment_methods.php?cmd=3&eid="+curId);
 				if(objResult.result==1){
@@ -121,6 +163,7 @@ var curId;
 				}
             }
 			
+			//for exiting an equipment view
 			function exitView(){
 				contentSpace.innerHTML="";
 				exit.hidden=true;
