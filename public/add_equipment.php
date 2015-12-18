@@ -7,6 +7,7 @@
 		</script>
 	</head>
 	<body>
+
 		<table>
 			<tr>
 				<td>Equipment Name: </td><td><input type="text" id="en" required></td>
@@ -60,8 +61,6 @@
 			</tr>
 			<tr>
 				<td>Description:</td> <td><textarea id="ed" cols="30" rows="5"required></textarea></td>
-			<tr><td>
-				</td><td><input type="submit" onclick="addEquipment()" value="ADD"></td>
 			</tr>
 		</table>
 	</body>
